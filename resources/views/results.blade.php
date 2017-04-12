@@ -11,19 +11,22 @@
     </head>
     <body>
 
+        <!-- Prints first result and then loops through remaining results (for seperate styling)-->
         <div class="results">
             <div>
                 <h3>{{ $result[0] -> name}}</h3>
                 <p>{{ $result[0] -> description}}</p>
                    
             </div>
+
             <h4>Other suggestions: </h4>
             <p>
-            @for($i = 1; $i < count( $result ); $i++)
-                    {{ $result[$i] -> name}}</br>
-            @endfor
+                @for($i = 1; $i < count( $result ); $i++)
+                        {{ $result[$i] -> name}}</br>
+                @endfor
             </p>
         </div>
+
 
         <div class="userArray">
             @foreach ($userArray as $u)

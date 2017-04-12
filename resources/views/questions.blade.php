@@ -11,6 +11,7 @@
     </head>
     <body>
 
+        <!-- Loops through questions in database -->
         <div class="questions">
             @foreach ($questions as $q)
                 <div>{{ $q->question }}</div>
