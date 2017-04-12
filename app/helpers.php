@@ -3,10 +3,12 @@
 	/* Returns the dot product of two arrays where the user's array is raised to the power of 2*/
 	function calcScore( $x, $y )
 	{
-		if (count($x) != count($y)) return "Cannot dot arrays of uneven length.";
-
+		// Loops over elements in question array (y)
+		// If user array is shorter, undefined elements are set to zero
+		// If user array is longer, extra elements are ignored
 		$total = 0;
-		for ($i = 0; $i < count($x) ; $i++){
+		for ($i = 0; $i < count($y) ; $i++){
+			if (!isset($x[$i])) $x[$i] = 0;
 			$total = $total + (pow( 2 , $x[$i])*$y[$i]);
 		};
 		return $total;

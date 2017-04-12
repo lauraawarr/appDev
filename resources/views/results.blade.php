@@ -12,18 +12,26 @@
     <body>
 
         <div class="results">
-            @foreach ($result as $r)
-                <div>
-                    <h3>{{ $r  }}</h3>
+            <div>
+                <h3>{{ $result[0] -> name}}</h3>
+                <p>{{ $result[0] -> description}}</p>
                    
-                </div>
+            </div>
+            <h4>Other suggestions: </h4>
+            <p>
+            @for($i = 1; $i < count( $result ); $i++)
+                    {{ $result[$i] -> name}}</br>
+            @endfor
+            </p>
+        </div>
+
+        <div class="userArray">
+            @foreach ($userArray as $u)
+                {{ $u }}
             @endforeach
         </div>
-    
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <script type="text/javascript" src="js/results.js"></script>
 
     </body>
 </html>

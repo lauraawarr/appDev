@@ -1,5 +1,5 @@
 /* Settings */
-var url = "getResult"; // web route
+var url = "getAjaxResult"; // web route
 var dataObj = []; // array of user's answers
 
 /* Append user's answers to the data array */

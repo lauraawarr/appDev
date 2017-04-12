@@ -25,6 +25,6 @@ Route::get('/results', function () {
     return view('results');
 });
 
-//Route::post('/getResult', 'UserController@getResult');
+Route::post('/getAjaxResult', 'UserController@getAjaxResult');
 
 Route::get('/results/{userArray}', 'UserController@getResult');
