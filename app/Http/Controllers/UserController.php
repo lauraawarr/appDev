@@ -70,8 +70,10 @@ class UserController extends Controller
 
      public function submitQuestion(Request $request)
     {
-    	$question = $request->input;
+    	$question = $request->question;
+
+    	$result = DB::table('questions')->insert([ 'id'=> null, 'question' => $question, 'inventoryCol' => 0]);
   
-    	return response()->json(['result'=> $question ]);
+    	return response()->json(['result'=> $result, 'question' => $question ]);
     }
 }
