@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'AvenirNext';
+  src: url('../fonts/AvenirNext.ttf');
+}
+
+.avenir-next {
+   font-family: "AvenirNext", sans-serif;
+}
