@@ -25,7 +25,7 @@ Route::get('/questions', function () {
     return view('questions');
 });
 
-Route::get('/questions', 'UserController@getQuestions');
+Route::get('/questions', 'UserController@getTraits');
 
 
 Route::get('/results', function () {
@@ -36,4 +36,4 @@ Route::get('/results/{userArray}', 'UserController@getResult');
 
 Route::post('/submitProduct', 'UserController@SubmitProduct');
 
-Route::post('/submitQuestion', 'UserController@SubmitQuestion');
+Route::post('/submitTrait', 'UserController@SubmitTrait');

@@ -1,17 +1,41 @@
+/* Listen to click event on any submit button and handles case based on id */
 $('input[type=submit]').on('mousedown', function(ev){
-	
+
 	var hash = ev.target.id;
-	var question = ($('#' + hash + 'Input').val() || null );
-	var name = ($('#' + hash + 'InputName').val() || null );
-	var description = ($('#' + hash + 'InputDescription').val() || null );
+	var trait = ($('#' + hash + '-Trait').val() || null );
+	var name = ($('#' + hash + '-Name').val() || null );
+	var description = ($('#' + hash + '-Description').val() || null );
+	var image = ($('#' + hash + '-Image').val() || null );
 	var data = {
-		question : question,
+		trait : trait,
 		name: name,
-		description: description
+		description: description,
+		image: image
 	};
-	var response = sendData( hash , data);
-	console.log( response );
+	sendData( hash , data);
+
 });
+
+/* Listen for navigation between rank pages */
+$('.navRank').on('mousedown', function(ev){
+	ev.target.val();
+});
+
+/* Manage active divs within 'ranking' page */
+var active = 1;
+$('#topic-1').addClass('active');
+
+function rankingNav( dir ){
+
+	$('#topic-' + active ).removeClass('active'); // remove active class form current div
+
+	if ( dir == 'next'){
+		active++;
+	} else if ( dir == 'prev' ){ // if current div is 1, do not decrease
+		if ( active - 1 > 0 ) active--;
+	}
+	$('#topic-' + active ).addClass('active'); // assign class active to new div
+};
 
 
 /* Send user's data to the server and returns response */

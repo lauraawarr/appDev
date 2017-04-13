@@ -12,20 +12,20 @@ class UserController extends Controller
 
 	public function getAdmin()
     {
-        $questions = DB::table('questions')->get();
+        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
 
         $products = DB::table('inventory')->orderBy('id', 'desc')->get();
 
-    	return view('admin', ['questions' => $questions, 'products' => $products]);
+    	return view('admin', ['traits' => $traits, 'products' => $products]);
     }
 
-    public function getQuestions()
+    public function getTraits()
     {
-        $questions = DB::table('questions')
+        $traits = DB::table('traits')
         				->orderBy('inventoryCol')
         				->get();
 
-    	return view('questions', ['questions' => $questions]);
+    	return view('questions', ['traits' => $traits]);
     }
 
     public function getResult($userArray)
@@ -63,17 +63,21 @@ class UserController extends Controller
 
     public function submitProduct(Request $request)
     {
-    	$product = $request->input;
+    	$name = $request->name;
+    	$description = $request->description;
+    	$img = $request->image;
+
+    	$result = DB::table('inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img]);
   
-    	return response()->json(['result'=> $product ]);
+    	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
     }
 
-     public function submitQuestion(Request $request)
+     public function submitTrait(Request $request)
     {
-    	$question = $request->question;
+    	$trait = $request->trait;
 
-    	$result = DB::table('questions')->insert([ 'id'=> null, 'question' => $question, 'inventoryCol' => 0]);
+    	$result = DB::table('traits')->insert([ 'id'=> null, 'trait' => $trait, 'inventoryCol' => 0]);
   
-    	return response()->json(['result'=> $result, 'question' => $question ]);
+    	return response()->json(['result'=> $result, 'trait' => $trait ]);
     }
 }

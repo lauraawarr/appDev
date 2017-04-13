@@ -29,7 +29,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript">
-           var result = <?php echo json_encode( $result[0] ) ?>;
+           var result = <?php echo json_encode( $result ) ?>;
            console.log( result );
         </script>
 
