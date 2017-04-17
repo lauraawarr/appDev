@@ -8,6 +8,13 @@ $(window).on("load", function() {
    var delayTime = 500;
    var inTime = 600;
 
+   // IMPORTANT. This number needs to be dynamically set
+   var totalQuestions = 4;
+
+   for (i=1; i<totalQuestions+1; i++) {
+      updateAnswer(i);
+   };
+
    function updateAnswer(questionNum) {
       $(".q" + questionNum).on("click", function() {
 
@@ -33,13 +40,14 @@ $(window).on("load", function() {
             $("#question-" + questionNum).remove();
             $("#question-" + (questionNum+1)).css("display", "block").animate({"opacity": 1}, inTime);
          }, delayTime);
+
+         if (questionNum == totalQuestions) {
+            $("#submit-answers").removeClass("dn").addClass("db");
+
+            setInterval(function() {
+               $("#submit-answers").animate({"opacity": 1}, inTime);
+            }, delayTime);
+         }
       });
-   };
-
-   // this number needs to be set
-   var totalQuestions = 4;
-
-   for (i=1; i<totalQuestions+1; i++) {
-      updateAnswer(i);
    };
 });
