@@ -21,27 +21,6 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 
 });
 
-/* Listen for navigation between rank pages */
-$('.navRank').on('mousedown', function(ev){
-	ev.target.val();
-});
-
-/* Manage active divs within 'ranking' page */
-var active = 1;
-$('#topic-1').addClass('active');
-
-function rankingNav( dir ){
-
-	$('#topic-' + active ).removeClass('active'); // remove active class form current div
-
-	if ( dir == 'next'){
-		active++;
-	} else if ( dir == 'prev' ){ // if current div is 1, do not decrease
-		if ( active - 1 > 0 ) active--;
-	}
-	$('#topic-' + active ).addClass('active'); // assign class active to new div
-};
-
 /* Upload an image */
 function previewFile( file ) {
   var file    = document.querySelector('input[type=file]').files[0];
@@ -90,7 +69,8 @@ function sendData( url, data ){
 	    },
 	    success: function( data ){
 	    	var response = data.result;
-			console.log( response );
+			console.log( data );
+			// if (url == "newQuiz") window.location.href = "admin-step2";
 
 		},
 		error: function( data ){
