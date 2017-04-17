@@ -17,3 +17,11 @@
    left: 50%;
    transform: translate(-50%, -50%);
 }
+
+.w6 {
+  width: 10rem;
+}
+
+.dn-0 { display: none; }
+.dn-1 { display: none; }
+.dn-2 { display: none; }
