@@ -31,7 +31,7 @@
                 <!-- <p>{{ $result[1] -> description}}</p> -->
                 <div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6 mb3"></div>
                 <p class="mt0 f6 blue b view-description-1 pointer"><img src="../fonts/down.svg" class="pr2">DESCRIPTION</p>
-                <p class="dn dn-0 ph5 ba">{{$result[1] -> description}}</p>
+                <p class="dn dn-0 ph5">{{$result[1] -> description}}</p>
                 <!-- <p>{{ $result[1] -> img}}</p> -->
                 <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn2">Save</button>
               </div>
