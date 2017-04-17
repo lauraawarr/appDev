@@ -1,11 +1,12 @@
 /* Listen to click event on any submit button and handles case based on id */
+var imgName = null;
 $('input[type=submit]').on('mousedown', function(ev){
 
 	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
 	var name = ($('#' + hash + '-Name').val() || null );
 	var description = ($('#' + hash + '-Description').val() || null );
-	var image = ($('#' + hash + '-Image').val() || null );
+	var image = imgName;
 	var data = {
 		trait : trait,
 		name: name,
@@ -35,6 +36,24 @@ function rankingNav( dir ){
 		if ( active - 1 > 0 ) active--;
 	}
 	$('#topic-' + active ).addClass('active'); // assign class active to new div
+};
+
+/* Upload an image */
+function previewFile( file ) {
+  var preview = document.querySelector('img');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;
+    imgName = file.name;
+    console.log('Name: ', imgName);
+    // console.log(reader.result);
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
 };
 
 
