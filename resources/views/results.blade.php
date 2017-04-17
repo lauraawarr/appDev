@@ -12,8 +12,8 @@
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
       <!-- Used Nicole's navigation and styling -->
         <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-          <a href="#" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
-          <a href="#" class="link dark-gray mr4 pb2">Create quiz</a>
+          <a href="../quiz-home.html" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
+          <a href="../step1.html" class="link dark-gray mr4 pb2">Create quiz</a>
         </nav>
         <div class="results bg-white pv5 mt5">
           <h2 class="tc dark-gray f2 mt0">Results</h2>
