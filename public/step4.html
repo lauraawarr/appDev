@@ -17,35 +17,53 @@
      <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
      <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
   </nav>
-   <div class="bg-white mt5 pv5">
-     <div class="flex justify-center items-center w-100 light-silver">
-        <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-1">
-              <span class="f7 absolute absolute-center">1</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-2">
-              <span class="f7 absolute absolute-center">2</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-3">
-              <span class="f7 absolute absolute-center">3</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-           <div class="active-circle bg-blue br-100 relative" id="circle-4">
-              <span class="f7 near-white absolute absolute-center">4</span>
-           </div>
-        </div>
-     </div>
+  <div class="bg-white mt5 pv5">
+      <div class="flex justify-center items-center w-100 light-silver">
+         <div class="bar bg-light-gray z-1 absolute"></div>
+         <div class="flex flex-column ph3 z-2">
+            <p class="blue f6 tc">Setup</p>
+            <div class="flex flex-row align-items justify-center">
+              <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                <div class="active-circle bg-white br-100 relative" id="circle-1">
+                   <span class="f7 absolute absolute-center">1</span>
+                </div>
+             </div>
+            </div>
+         </div>
+         <div class="flex flex-column ph3 z-3">
+            <p class="blue f6 tc">Products</p>
+            <div class="flex flex-row align-items justify-center">
+              <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                <div class="active-circle bg-white br-100 relative" id="circle-1">
+                   <span class="f7 absolute absolute-center">2</span>
+                </div>
+             </div>
+            </div>
+         </div>
+         <div class="flex flex-column ph3 z-3">
+            <p class="blue f6 tc">Traits</p>
+            <div class="flex flex-row align-items justify-center">
+              <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                <div class="active-circle bg-white br-100 relative" id="circle-1">
+                   <span class="f7 absolute absolute-center">3</span>
+                </div>
+             </div>
+            </div>
+         </div>
+         <div class="flex flex-column ph3 z-3">
+            <p class="blue f6 tc">Ranking</p>
+            <div class="flex flex-row align-items justify-center">
+              <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                <div class="active-circle bg-blue br-100 relative" id="circle-1">
+                   <span class="f7 near-white absolute absolute-center">4</span>
+                </div>
+             </div>
+            </div>
+         </div>
+      </div>
       <h1 class="mt5 mb0 tc">Rank your products</h1>
       <p class="silver tc">Rank the traits of your products on the following scale:</p>
-      <ul class="list pl0 flex flex-row justify-center silver">
+      <ul class="list pl0 flex flex-row flex-wrap justify-center silver">
          <ul class="list pl0 flex flex-column tc ph3">
             <li>1</li>
             <li>Poor</li>
@@ -68,7 +86,7 @@
          </ul>
       </ul>
       <form action="" method="post">
-         <div class="w-80 mt5 center flex flex-column">
+         <div class="w-100 w-80-ns mt5 center flex flex-column">
             <h3 class="tc mt0">Gaming</h3>
             <div class="flex flex-row flex-wrap justify-center tc">
                <div class="tc w-100 w-50-m w-30-l mh2 mb3">
@@ -100,8 +118,8 @@
          </div>
       </form>
       <div class="mt5 tc cf">
-         <a href="step3.html" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-         <a href="step5.html" class="dim bg-blue br1 pv3 ph5 f6 link white">Next</a>
+         <a href="step3.html" class="dim bg-silver  br1 pv3 ph4 ph5-ns f6 link white">Back</a>
+         <a href="step5.html" class="dim bg-blue br1 pv3 ph4 ph5-ns f6 link white">Next</a>
       </div>
    </div>
 </body>
