@@ -10,13 +10,22 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
 
-	public function getAdmin()
+    public function getStep3()
     {
         $traits = DB::table('traits')->orderBy('inventoryCol')->get();
 
         $products = DB::table('inventory')->orderBy('id', 'desc')->get();
 
-    	return view('admin', ['traits' => $traits, 'products' => $products]);
+        return view('admin-step3', ['traits' => $traits, 'products' => $products]);
+    }
+
+	public function getStep4()
+    {
+        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
+
+        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+
+    	return view('admin-step4', ['traits' => $traits, 'products' => $products]);
     }
 
     public function getTraits()
@@ -26,6 +35,13 @@ class UserController extends Controller
         				->get();
 
     	return view('questions', ['traits' => $traits]);
+    }
+
+    public function getQuizzes()
+    {
+        $quizzes = DB::table('quizzes')->get();
+
+        return view('admin', ['quizzes' => $quizzes]);
     }
 
     public function getResult($userArray)
@@ -59,6 +75,17 @@ class UserController extends Controller
         });
   
     	return view('results', ['result' => $topProds ]);
+    }
+
+    public function newQuiz(Request $request)
+    {
+        $name = $request->name;
+        $description = $request->description;
+
+        $result = DB::table('quizzes')->insert([ 'id'=> null, 'name' => $name, 'description' => $description]);
+        $quizId = DB::table('quizzes')->select(DB::raw('id WHERE id == LAST_INSERT_ID()'));
+  
+        return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
     public function submitProduct(Request $request)

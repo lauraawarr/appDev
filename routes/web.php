@@ -19,7 +19,33 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
-Route::get('/admin', 'UserController@getAdmin');
+Route::get('/admin', 'UserController@getQuizzes');
+
+Route::get('/admin-step1', function () {
+    return view('admin-step1');
+});
+
+Route::get('/admin-step2', function () {
+    return view('admin-step2');
+});
+
+Route::get('/admin-step3', function () {
+    return view('admin-step3');
+});
+
+Route::get('/admin-step3', 'UserController@getStep3');
+
+Route::get('/admin-step4', function () {
+    return view('admin-step4');
+});
+
+Route::get('/admin-step4', 'UserController@getStep4');
+
+Route::get('/admin-step5', function () {
+    return view('admin-step5');
+});
+
+Route::post('/newQuiz', 'UserController@newQuiz');
 
 Route::get('/questions', function () {
     return view('questions');

@@ -6,70 +6,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-        <title>Admin</title>
-
+        <title>Admin Home</title>
+        <link rel="stylesheet" href="./css/tachyons.css">
+        <link rel="stylesheet" href="./css/style.css">
     </head>
-    <body>
-        <!-- Input IDs are used to differentiate between callback functions -->
-
-        <!-- Submit input product to database -->
-        <div class="addProduct">
-            <input id="submitProduct-Name" placeholder='name'  type='text'></input>
-            <input id="submitProduct-Description" placeholder='description' type='text'></input>
-            <input id="submitProduct-Image" placeholder='image' type='text'></input>
-            <input id="submitProduct" type='submit'></input>
-
-            @foreach ( $products as $p )
-                <div>
-                    {{ $p -> id }}
-                    {{ $p -> name }}
-                </div>
-            @endforeach
+    <body class="avenir-next pa4 bg-washed-blue fw3 f5">
+       <nav class="pb4 bb bw1 b--lightest-blue flex justify-start relative">
+          <a href="" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
+          <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
+          <div class="bg-blue h3 w3 f4 near-white br-100 absolute bottom--2 right-3">
+             <div class="absolute absolute-center">
+                <a href="admin-step1" class="link white">+</a>
+             </div>
+          </div>
+       </nav>
+       @if ( count( $quizzes ) == 0 )
+        <div class="bg-white mt5 pv5 tc">
+          <h1 class="mt0">Create your first quiz</h1>
+          <p class="silver">Tap the + button to begin</p>
+          <div class="mt5 mb2">
+             <a href="admin-step1" class="dim bg-blue br1 pv3 ph5 f6 link white">Begin</a>
+          </div>
         </div>
 
-        <br />
-
-        <!-- Submit input question to database -->
-        <div class="addTrait">
-            <input id="submitTrait-Trait" placeholder='trait' type='text'></input>
-            <input id="submitTrait" type='submit'></input>
-
-            @foreach ( $traits as $t )
-                <div>{{ $t -> trait }}</div>
-            @endforeach
-        </div>
-
-        <!-- For each 'topic' assign ranking to each product -->
-        <div class="addRank">
-            @foreach ( $traits as $t )
-
-                <div  id="topic-{{ $t -> inventoryCol }}"> 
-                    <h2>Rank each product's: <i>{{ $t -> trait }}</i></h2>
-
-                    @foreach ( $products as $p )
-                        <div>
-                            {{ $p -> id }}
-                            {{ $p -> name }}
-                            <form>
-                              <input type="radio" name="rank" value="1" checked> 1
-                              <input type="radio" name="rank" value="2"> 2
-                              <input type="radio" name="rank" value="3"> 3 
-                              <input type="radio" name="rank" value="4"> 4
-                              <input type="radio" name="rank" value="5"> 5
-                            </form>
-                        </div>
-                    @endforeach 
-
-                </div>
-
-            @endforeach
-            <input class="navRank" type='button' value='Prev'></input>
-            <input class="navRank" type='button' value='Next'></input>
-        </div>
-
-        <div class="error"></div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/admin.js"></script>
+        @else
+            @foreach ( $quizzes as $q )
+            <div class="bg-white mt4 pv5 ph5">
+             <h3 class="mv0">{{ $q -> name }}</h3>
+             <p>{{ $q -> description }}</p>
+             <div class="mt5 mb2">
+                <a href="" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
+                <a href="quiz.html" class="dim bg-blue br1 pv3 ph5 f6 link white">Preview</a>
+             </div>
+            </div>
+           @endforeach
+        @endif
     </body>
 </html>
