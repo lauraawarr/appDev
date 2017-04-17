@@ -20,14 +20,38 @@
       <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
    </nav>
    <div class="bg-white mt4 pv5">
-      <div>
-         
-      </div>
-      <h1 class="mt0 tc">What Laptop Should You Buy?</h1>
 
-      <form action="" method="post">
+      <!-- Progress Bar -->
+      <div class="flex justify-center items-center w-100 light-silver">
+         <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+            <div class="active-circle bg-blue br-100 relative" id="circle-1">
+               <span class="f7 near-white absolute absolute-center">1</span>
+            </div>
+         </div>
+         <span class="bar bg-light-gray w-5"></span>
+         <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
+            <div class="br-100 relative" id="circle-2">
+               <span class="f7 absolute absolute-center">2</span>
+            </div>
+         </div>
+         <span class="bar bg-light-gray w-5"></span>
+         <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
+            <div class="br-100 relative" id="circle-3">
+               <span class="f7 absolute absolute-center">3</span>
+            </div>
+         </div>
+         <span class="bar bg-light-gray w-5"></span>
+         <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
+            <div class="br-100 relative" id="circle-4">
+               <span class="f7 absolute absolute-center">4</span>
+            </div>
+         </div>
+      </div>
+      <h1 class="mt5 tc">What Laptop Should You Buy?</h1>
+
+      <form action="" method="post" class="mt4">
          <!-- Question 1 -->
-         <div class="w-50 mt5 center" id="question-1">
+         <div class="w-50 center" id="question-1">
             <h3>How important is your laptop for gaming?</h3>
             <div class="mb3">
                <input type="radio" name="q1" value="1" class="mr2 pointer q1" id="q1_1" />
@@ -52,7 +76,7 @@
          </div>
 
          <!-- Question 2 -->
-         <div class="w-50 mt5 center dn o-0" id="question-2">
+         <div class="w-50 center dn o-0" id="question-2">
             <h3>How important is your laptop for video editing?</h3>
             <div class="mb3">
                <input type="radio" name="q2" value="1" class="mr2 pointer q2" id="q2_1" />
@@ -77,7 +101,7 @@
          </div>
 
          <!-- Question 3 -->
-         <div class="w-50 mt5 center dn o-0" id="question-3">
+         <div class="w-50 center dn o-0" id="question-3">
             <h3>How important is your laptop's portability?</h3>
             <div class="mb3">
                <input type="radio" name="q3" value="1" class="mr2 pointer q3" id="q3_1" />
@@ -102,7 +126,7 @@
          </div>
 
          <!-- Question 4 -->
-         <div class="w-50 mt5 center dn o-0" id="question-4">
+         <div class="w-50 center dn o-0" id="question-4">
             <h3>How important is it that your laptop costs less than $1K?</h3>
             <div class="mb3">
                <input type="radio" name="q4" value="1" class="mr2 pointer q4" id="q4_1" />
@@ -127,7 +151,7 @@
          </div>
 
          <!-- Submit -->
-         <input type="submit" value="Submit" class="mt5 bg-blue br1 pv3 ph5 f6 link white center bn dn o-0" id="submit-answers" />
+         <input type="submit" value="Submit" class="mt5 bg-blue br1 pv3 ph5 f6 fw3 link white center bn dn o-0 pointer" id="submit-answers" />
       </form>
    </div>
 </body>
