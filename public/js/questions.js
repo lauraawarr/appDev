@@ -88,6 +88,4 @@ $(window).on("load", function() {
          $("#submit-answers").css("display", "block").animate({"opacity": 1}, inTime);
       }, delayTime);
    });
-
-
 });
