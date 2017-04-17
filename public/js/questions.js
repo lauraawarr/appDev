@@ -8,84 +8,38 @@ $(window).on("load", function() {
    var delayTime = 500;
    var inTime = 600;
 
-   $(".q1").on("click", function() {
-      // set q1 equal to the user's answer to question 1
-      var q1 = $('input[name=q1]:checked').val();
-      answers["q1"] = q1;
-      console.log(q1);
-      console.log(answers);
+   function updateAnswer(questionNum) {
+      $(".q" + questionNum).on("click", function() {
 
-      // animate out question 1
-      $("#question-1").animate({"opacity": 0}, outTime);
+         var q = $("input[name=q" + questionNum + "]:checked").val();
+         answers["q" + questionNum] = q;
+         console.log(q);
+         console.log(answers);
 
-      // change circle-1's BG from blue to white
-      $("#circle-1").removeClass("bg-blue").addClass("bg-white");
-      // change circle-1's inner text from white to silver (silver is inherited from parent)
-      $("#circle-1 span").removeClass("near-white");
+         // animate out current question
+         $("#question-" + questionNum).animate({"opacity": 0}, outTime);
 
-      // change next circle's BG and text color
-      $("#circle-2").addClass("active-circle bg-blue");
-      $("#circle-2 span").addClass("near-white");
+         // change current circle's BG from blue to white
+         $("#circle-" + questionNum).removeClass("bg-blue").addClass("bg-white");
+         // change current circle's inner text from white to silver (silver is inherited from parent)
+         $("#circle-" + questionNum + " span").removeClass("near-white");
 
-      // remove question 1, animate in question 2
-      setInterval(function() {
-         $("#question-1").remove();
-         $("#question-2").css("display", "block").animate({"opacity": 1}, inTime);
-      }, delayTime);
-   });
+         // change next circle's BG and text color
+         $("#circle-" + (questionNum+1)).addClass("active-circle bg-blue");
+         $("#circle-" + (questionNum+1) + " span").addClass("near-white");
 
-   $(".q2").on("click", function() {
-      var q2 = $('input[name=q2]:checked').val();
-      answers["q2"] = q2;
-      console.log(q2);
-      console.log(answers);
+         // remove current question, animate in next question
+         setInterval(function() {
+            $("#question-" + questionNum).remove();
+            $("#question-" + (questionNum+1)).css("display", "block").animate({"opacity": 1}, inTime);
+         }, delayTime);
+      });
+   };
 
-      $("#question-2").animate({"opacity": 0}, outTime);
+   // this number needs to be set
+   var totalQuestions = 4;
 
-      $("#circle-2").removeClass("bg-blue").addClass("bg-white");
-      $("#circle-2 span").removeClass("near-white");
-      $("#circle-3").addClass("active-circle bg-blue");
-      $("#circle-3 span").addClass("near-white");
-
-      setInterval(function() {
-         $("#question-2").remove();
-         $("#question-3").css("display", "block").animate({"opacity": 1}, inTime);
-      }, delayTime);
-   });
-
-   $(".q3").on("click", function() {
-      var q3 = $('input[name=q3]:checked').val();
-      answers["q3"] = q3;
-      console.log(q3);
-      console.log(answers);
-
-      $("#question-3").animate({"opacity": 0}, outTime);
-
-      $("#circle-3").removeClass("bg-blue").addClass("bg-white");
-      $("#circle-3 span").removeClass("near-white");
-      $("#circle-4").addClass("active-circle bg-blue");
-      $("#circle-4 span").addClass("near-white");
-
-      setInterval(function() {
-         $("#question-3").remove();
-         $("#question-4").css("display", "block").animate({"opacity": 1}, inTime);
-      }, delayTime);
-   });
-
-   $(".q4").on("click", function() {
-      var q4 = $('input[name=q4]:checked').val();
-      answers["q4"] = q4;
-      console.log(q4);
-      console.log(answers);
-
-      $("#question-4").animate({"opacity": 0}, outTime);
-
-      $("#circle-4").removeClass("bg-blue").addClass("bg-white");
-      $("#circle-4 span").removeClass("near-white");
-
-      setInterval(function() {
-         $("#question-4").remove();
-         $("#submit-answers").css("display", "block").animate({"opacity": 1}, inTime);
-      }, delayTime);
-   });
+   for (i=1; i<totalQuestions+1; i++) {
+      updateAnswer(i);
+   };
 });
