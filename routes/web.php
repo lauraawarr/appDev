@@ -21,31 +21,27 @@ Route::get('/admin', function () {
 
 Route::get('/admin', 'UserController@getQuizzes');
 
-Route::get('/admin-step1/{quizId}', function () {
+Route::get('/admin-step1', function () {
     return view('admin-step1');
 });
 
-Route::get('/admin-step1/{quizId}', 'UserController@getStep1');
-
-Route::get('/admin-step2/{quizId}', function () {
+Route::get('/admin-step2', function () {
     return view('admin-step2');
 });
 
-Route::get('/admin-step2/{quizId}', 'UserController@getStep2');
-
-Route::get('/admin-step3/{quizId}', function () {
+Route::get('/admin-step3', function () {
     return view('admin-step3');
 });
 
-Route::get('/admin-step3/{quizId}', 'UserController@getStep3');
+Route::get('/admin-step3', 'UserController@getStep3');
 
 Route::get('/admin-step4', function () {
     return view('admin-step4');
 });
 
-Route::get('/admin-step4/{quizId}', 'UserController@getStep4');
+Route::get('/admin-step4', 'UserController@getStep4');
 
-Route::get('/admin-step5/{quizId}', function () {
+Route::get('/admin-step5', function () {
     return view('admin-step5');
 });
 

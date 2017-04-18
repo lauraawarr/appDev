@@ -9,41 +9,23 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function getStep1( $quizId )
-    {
-        $quiz = DB::table('quizzes')->select('*')->where('id', '=', $quizId )->get();
 
-        return view('admin-step1', ['quiz' => $quiz, 'quizId' => $quizId ]);
-    }
-
-    public function getStep2( $quizId )
-    {
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
-
-        return view('admin-step2', ['products' => $products, 'quizId' => $quizId ]);
-    }
-
-    public function getStep3( $quizId )
-    {
-        $traits = DB::table('traits')->orderBy('id', 'desc')->get();
-
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
-
-        return view('admin-step3', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
-    }
-
-	public function getStep4(  $quizId )
+    public function getStep3()
     {
         $traits = DB::table('traits')->orderBy('inventoryCol')->get();
 
         $products = DB::table('inventory')->orderBy('id', 'desc')->get();
 
-    	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
+        return view('admin-step3', ['traits' => $traits, 'products' => $products]);
     }
 
-    public function getStep5(  $quizId )
+	public function getStep4()
     {
-        return view('admin-step5', ['quizId' => $quizId]);
+        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
+
+        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+
+    	return view('admin-step4', ['traits' => $traits, 'products' => $products]);
     }
 
     public function getTraits()
@@ -101,8 +83,8 @@ class UserController extends Controller
         $description = $request->description;
 
         $result = DB::table('quizzes')->insert([ 'id'=> null, 'name' => $name, 'description' => $description]);
-        $quizId = DB::getPdo()->lastInsertId();
-
+        $quizId = DB::table('quizzes')->select(DB::raw('id WHERE id == LAST_INSERT_ID()'));
+  
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
