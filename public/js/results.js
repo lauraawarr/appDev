@@ -12,7 +12,7 @@ $(document).ready(function() {
     retrieved_array.push(obj);
     // add the array back into localStorage
     localStorage.setItem('array', JSON.stringify(retrieved_array));
-    console.log(retrieved_array);
+    // console.log(retrieved_array);
   }
   // add event handlers to the buttons for each product
   $('#btn1').click(function() {

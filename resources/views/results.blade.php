@@ -70,8 +70,6 @@
              var stored_array = [];
              localStorage.setItem('array', JSON.stringify(stored_array));
            }
-          //  var stored_array = [];
-          //  localStorage.setItem('array', JSON.stringify(stored_array));
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="../js/results.js"></script>

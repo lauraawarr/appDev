@@ -1,14 +1,31 @@
 $(document).ready(function() {
   var compare_items = JSON.parse(localStorage.getItem('array'));
+  // for each object the the compare_items array, add the name and image to the
+  // page.
   $.each(compare_items, function() {
-    $('#results').append('<div class="ind-result dtc-ns tc pv4 relative">'+
-      '<div class="pointer absolute top-0-m right-0-m"><img src="fonts/close.svg"></div>'+
+    $('#results').append('<div class="ind-result dtc-ns tc ba pv4 relative '+this.id+'">'+
+      '<a href="#" class="pointer absolute ba top-0-m right-6-m" id="'+this.id+'"">X</a>'+
       '<h3 class="silver f4 b">'+this.name+'</h3><div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6">'+
       '</div></div>');
   });
-  // console.log(compare_items);
-});
 
-// need to add a thicker font-weight for avenir
-//<div class="ind-result dtc-ns tc pv4"><h3 class="silver f4 b">'+this.name+'</h3>'+
-  //'<div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6"></div>
+  // when the user clicks on the the 'X', the product is removed from the
+  // comparison page as well as the local storage.
+  $('a').click(function(e) {
+    //e.stopPropagation();
+    if ($(this).attr("id")) {
+      var id = ($(this).attr('id'));
+      var remove_array = JSON.parse(localStorage.getItem('array'));
+      for(var i = 0; i < remove_array.length; i++) {
+        if(remove_array[i].id == id) {
+          remove_array.splice(i, 1);
+          localStorage.setItem('array', JSON.stringify(remove_array));
+        }
+      }
+      e.target.parentNode.remove();
+    } else {
+      console.log('no id attribute');
+    }
+    e.stopPropagation();
+  });
+});

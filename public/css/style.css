@@ -25,3 +25,7 @@
 .dn-0 { display: none; }
 .dn-1 { display: none; }
 .dn-2 { display: none; }
+
+.right-5-m {
+  right: 6em;
+}
