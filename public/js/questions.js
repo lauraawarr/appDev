@@ -1,4 +1,4 @@
-$(window).on("load", function() {
+$(document).ready(function() {
 
    // object to keep track of user's answers
    var answers = {"q1": "", "q2": "", "q3": "", "q4": ""};
@@ -21,9 +21,6 @@ $(window).on("load", function() {
 
          // update progress bar
          percentageDone = questionNum/totalQuestions * 100;
-         console.log("questionNum: ", questionNum);
-         console.log("totalQuestions: ", totalQuestions);
-         console.log(percentageDone);
          $("#quiz-bar").css("width", percentageDone + "%");
          $("#done-text").html(percentageDone);
 

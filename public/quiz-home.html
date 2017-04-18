@@ -11,6 +11,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="./css/tachyons.css">
    <link rel="stylesheet" href="./css/style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="./js/home.js"></script>
 </head>
 <body class="avenir-next pa4 bg-washed-blue fw3 f5">
    <nav class="pb4 bb bw1 b--lightest-blue flex justify-start relative">
@@ -26,13 +28,21 @@
       <h1 class="mt0">Create your first quiz</h1>
       <p class="mb0 silver">Tap the + button to begin</p>
    </div>
-   <div class="bg-white mt4 pv5 ph5">
+   <div class="bg-white mt4 pv5 ph5 quiz">
      <h3 class="mv0">What Laptop Should You Buy?</h3>
      <p class="mb0 light-silver">Description here</h4>
      <div class="mt5">
+        <span class="dim bg-moon-gray br1 pv3 ph5 f6 link white pointer delete">Delete</span>
         <a href="" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
         <a href="quiz.html" class="dim bg-blue br1 pv3 ph5 f6 link white">Preview</a>
      </div>
+   </div>
+   <div class="absolute absolute-center bg-white ba b--light-gray ph4 pt4 pb5 z-5 br1 dn" id="confirm-delete-box">
+      <h3 class="mb5">Are you sure you want to delete this quiz?</h3>
+      <span class="pointer dim bg-moon-gray br1 pv3 ph5 f6 link white" id="cancel-button">Cancel</span>
+      <span class="pointer dim bg-blue br1 pv3 ph5 f6 link white" id="delete-button">Delete</span>
+   </div>
+   <div class="w-100 vh-100 bg-black-70 absolute absolute--fill dn" id="confirm-overlay">
    </div>
 </body>
 </html>
