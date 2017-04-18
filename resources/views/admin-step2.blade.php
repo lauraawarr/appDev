@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
-       <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-      <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
-      <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
-   </nav>
+      <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
+        <a href="../admin" class="link dim dark-gray mr4 pb2">Quizzes</a>
+        <a href="../admin-step1/0" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
+      </nav>
    <div class="bg-white mt5 ph3 pv5">
          <div class="flex justify-center items-center w-100 light-silver">
             <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
@@ -43,7 +43,7 @@
             </div>
          </div>
           <h1 class="mt5 mb0 tc">Add your products</h1>
-          <form>
+          <form id="product-upload" enctype="multipart/form-data">
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Product name</h3>
                 <div class="mb4">
@@ -55,7 +55,7 @@
                 </div>
                 <h3 class="f5">Image <i><span id='image-name'></span></i></h3>
                 <div class="mb4 pb4 bb bw1 b--light-gray">
-                  <input id="file-upload" type="file" onchange="previewFile()" class="o-0 overflow-hidden z--1 absolute" />
+                  <input id="file-upload" type="file" name="image" onchange="previewFile()" class="o-0 overflow-hidden z--1 absolute"/>
                   <label for="file-upload" class="custom-file-upload dib dim b--blue bg-blue f6 white tc pv2 w-100 br1 pointer">Choose file</label>
                   <input id="submitProduct" type="button" value="Add product" class="submit dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
 
@@ -70,12 +70,17 @@
 
           <!-- Product upload preview -->
           <div id="products">
-             <img src="" height="200">
+             @foreach ($products as $p)
+                <img height="200" src="../uploads/{{ $p -> img }}" />
+             @endforeach
           </div>
 
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+          var quizId = ("@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif" || null );
+        </script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

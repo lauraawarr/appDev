@@ -64,6 +64,10 @@ Route::get('/results', function () {
 
 Route::get('/results/{userArray}', 'UserController@getResult');
 
-Route::post('/submitProduct', 'UserController@SubmitProduct');
+Route::post('/submitProduct/{quizId}', 'UserController@SubmitProduct');
 
-Route::post('/submitTrait', 'UserController@SubmitTrait');
+Route::post('/submitTrait/{quizId}', 'UserController@SubmitTrait');
+
+Route::post('/updateQuiz/{quizId}', 'UserController@updateQuiz');
+
+Route::post('/uploadImage', 'UserController@uploadImage');

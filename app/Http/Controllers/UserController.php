@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use DB;
 use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -106,7 +109,7 @@ class UserController extends Controller
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
-    public function submitProduct(Request $request)
+    public function submitProduct(Request $request, $quizId)
     {
     	$name = $request->name;
     	$description = $request->description;
@@ -117,12 +120,44 @@ class UserController extends Controller
     	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
     }
 
-     public function submitTrait(Request $request)
+     public function submitTrait(Request $request, $quizId)
     {
     	$trait = $request->trait;
 
     	$result = DB::table('traits')->insert([ 'id'=> null, 'trait' => $trait, 'inventoryCol' => 0]);
   
     	return response()->json(['result'=> $result, 'trait' => $trait ]);
+    }
+
+    public function updateQuiz(Request $request, $quizId)
+    {
+        $name = $request->name;
+        $description = $request->description;
+
+        $result = DB::table('quizzes')
+                ->where('id', $quizId)
+                ->update([ 'name' => $name, 'description' => $description]);
+
+        return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $file = $request->image;
+
+        if ($file)
+        {
+           $result= "file present";
+           $path = $file->store('uploads');
+           Image::make($file->getRealPath())->save($path);
+        }
+        else{
+            $result= "file not present";
+            $path = $file->store('uploads');
+        }
+
+        $name = $request->image->hashName();
+
+        return response()->json(['result'=> $result, 'imgName'=> $name]);
     }
 }

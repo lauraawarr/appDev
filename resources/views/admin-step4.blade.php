@@ -13,8 +13,8 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-         <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
-         <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
+        <a href="../admin" class="link dim dark-gray mr4 pb2">Quizzes</a>
+        <a href="../admin-step1/0" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
       </nav>
        <div class="bg-white mt5 ph3 pv5">
          <div class="flex justify-center items-center w-100 light-silver">
@@ -104,7 +104,7 @@
           </form>
           <div class="mt5 mb2 tc cf">
              <a href="../admin-step3/{{ $quizId }}" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a href="../admin-step5/{{ $quizId }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Next</a>
+             <a href="../admin-step5/{{ $quizId }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Save</a>
           </div>
        </div>
 

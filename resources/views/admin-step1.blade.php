@@ -1,3 +1,17 @@
+<?php
+
+if ( isset($quiz[0] -> id) ){ 
+  $description = $quiz[0] -> description ;
+  $name = $quiz[0] -> name ;
+  $url = "updateQuiz";
+  $cta = "Save";
+} elseif ( $quizId == 0){
+  $url = "newQuiz";
+  $description = $name = null;
+  $cta = "Next";
+};
+
+?>
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>
@@ -13,9 +27,9 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
         <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-          <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
-          <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
-       </nav>
+          <a href="../admin" class="link dim dark-gray mr4 pb2">Quizzes</a>
+          <a href="../admin-step1/0" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
+        </nav>
        <div class="bg-white mt5 ph3 pv5">
          <div class="flex justify-center items-center w-100 light-silver">
 
@@ -48,25 +62,26 @@
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Quiz name</h3>
                 <div class="mb4">
-                   <input id="newQuiz-Name" type="text" 
-                    value="@if ( isset($quiz[0] -> name) ) {{ $quiz[0] -> name }} @endif" 
+                   <input id="<? echo $url; ?>-Name" type="text" 
+                    value="<? echo $name; ?>" 
                     class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                 </div>
                 <h3 class="f5">Description</h3>
                 <div class="mb4">
-                  <textarea id="newQuiz-Description"  name="textarea" rows="10" cols="50" 
-                  class="ba bw1 b--light-silver h3 w-100 br1 pointer">@if ( isset($quiz[0] -> description) ){{ $quiz[0] -> description }} @endif
-                  </textarea>
+                  <textarea id="<? echo $url; ?>-Description"  name="textarea" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"><? echo $description; ?></textarea>
                 </div>
              </div>
           </form>
           <div class="mt5 mb2 tc">
              <a href="../admin" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a id="newQuiz" class="submit dim bg-blue br1 pv3 ph5 f6 link white">Next</a>
+             <a id="<? echo $url; ?>" class="submit dim bg-blue br1 pv3 ph5 f6 link white"><? echo $cta; ?></a>
           </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+          var quizId = ("@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif" || null );
+        </script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

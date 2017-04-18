@@ -12,9 +12,9 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-          <a href="" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
-          <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
-       </nav>
+        <a href="../admin" class="link dim dark-gray mr4 pb2">Quizzes</a>
+        <a href="../admin-step1/0" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
+      </nav>
        <div class="bg-white mt5 pv5">
           <h1 class="mt0 tc">Success!</h1>
           <p class="silver tc">Your quiz is now ready to be shared.</p>
