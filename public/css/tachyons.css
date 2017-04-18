@@ -569,6 +569,7 @@ img { max-width: 100%; }
 .bottom-0 { bottom: 0; }
 .left-0 { left: 0; }
 .top-1 { top: 1rem; }
+.top-1p { top: 0.5rem; }
 .right-1 { right: 1rem; }
 .bottom-1 { bottom: 1rem; }
 .left-1 { left: 1rem; }
@@ -2654,6 +2655,7 @@ code, .code { font-family: Consolas, monaco, monospace; }
  .w-33-m { width: 33%; }
  .w-34-m { width: 34%; }
  .w-40-m { width: 40%; }
+ .w-46-m { width: 46%; }
  .w-50-m { width: 50%; }
  .w-60-m { width: 60%; }
  .w-70-m { width: 70%; }
