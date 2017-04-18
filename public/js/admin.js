@@ -14,7 +14,7 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 		description: description,
 		image: image
 	};
-	sendData( hash , data);
+	sendData( '../' + hash , data);
 
 	if ( name && description && imgSrc ) previewProduct( name, description, imgSrc );
 	if ( trait ) previewTrait( trait );
@@ -69,8 +69,8 @@ function sendData( url, data ){
 	    },
 	    success: function( data ){
 	    	var response = data.result;
-			console.log( data );
-			// if (url == "newQuiz") window.location.href = "admin-step2";
+			console.log( data.quizId );
+			if (url == "../newQuiz") window.location.href = "../admin-step2/" + data.quizId;
 
 		},
 		error: function( data ){
