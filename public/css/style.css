@@ -5,7 +5,11 @@
 
 .avenir-next { font-family: "AvenirNext", sans-serif; }
 
-.bar { height: 5px; }
+.bar {
+  height: 5px;
+  width: 250px;
+  top: 280px;
+}
 
 .quiz-bar { height: 7px; }
 
