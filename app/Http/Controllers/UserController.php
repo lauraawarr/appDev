@@ -9,14 +9,41 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function getStep1( $quizId )
+    {
+        $quiz = DB::table('quizzes')->select('*')->where('id', '=', $quizId )->get();
 
-	public function getAdmin()
+        return view('admin-step1', ['quiz' => $quiz, 'quizId' => $quizId ]);
+    }
+
+    public function getStep2( $quizId )
+    {
+        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+
+        return view('admin-step2', ['products' => $products, 'quizId' => $quizId ]);
+    }
+
+    public function getStep3( $quizId )
+    {
+        $traits = DB::table('traits')->orderBy('id', 'desc')->get();
+
+        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+
+        return view('admin-step3', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
+    }
+
+	public function getStep4(  $quizId )
     {
         $traits = DB::table('traits')->orderBy('inventoryCol')->get();
 
         $products = DB::table('inventory')->orderBy('id', 'desc')->get();
 
-    	return view('admin', ['traits' => $traits, 'products' => $products]);
+    	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
+    }
+
+    public function getStep5(  $quizId )
+    {
+        return view('admin-step5', ['quizId' => $quizId]);
     }
 
     public function getTraits()
@@ -26,6 +53,13 @@ class UserController extends Controller
         				->get();
 
     	return view('questions', ['traits' => $traits]);
+    }
+
+    public function getQuizzes()
+    {
+        $quizzes = DB::table('quizzes')->get();
+
+        return view('admin', ['quizzes' => $quizzes]);
     }
 
     public function getResult($userArray)
@@ -59,6 +93,17 @@ class UserController extends Controller
         });
   
     	return view('results', ['result' => $topProds ]);
+    }
+
+    public function newQuiz(Request $request)
+    {
+        $name = $request->name;
+        $description = $request->description;
+
+        $result = DB::table('quizzes')->insert([ 'id'=> null, 'name' => $name, 'description' => $description]);
+        $quizId = DB::getPdo()->lastInsertId();
+
+        return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
     public function submitProduct(Request $request)
