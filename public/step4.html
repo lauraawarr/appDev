@@ -17,92 +17,110 @@
      <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
      <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
   </nav>
-   <div class="bg-white mt5 ph3 pv5">
+  <div class="bg-white mt5 ph3 pv5">
      <div class="flex justify-center items-center w-100 light-silver">
-        <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-1">
-              <span class="f7 absolute absolute-center">1</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-2">
-              <span class="f7 absolute absolute-center">2</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-           <div class="br-100 relative" id="circle-3">
-              <span class="f7 absolute absolute-center">3</span>
-           </div>
-        </div>
-        <span class="bar bg-light-gray w-5"></span>
-        <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-           <div class="active-circle bg-blue br-100 relative" id="circle-4">
-              <span class="f7 near-white absolute absolute-center">4</span>
-           </div>
-        </div>
-     </div>
-      <h1 class="mt5 mb0 tc">Rank your products</h1>
-      <p class="silver tc">Rank the traits of your products on the following scale:</p>
-      <ul class="list pl0 flex flex-row flex-wrap justify-center silver">
-         <ul class="list pl0 flex flex-column tc ph3">
-            <li>1</li>
-            <li>Poor</li>
-         </ul>
-         <ul class="list pl0 flex flex-column tc ph3">
-            <li>2</li>
-            <li>Fair</li>
-         </ul>
-         <ul class="list pl0 flex flex-column tc ph3">
-            <li>3</li>
-            <li>Good</li>
-         </ul>
-         <ul class="list pl0 flex flex-column tc ph3">
-            <li>4</li>
-            <li>Great</li>
-         </ul>
-         <ul class="list pl0 flex flex-column tc ph3">
-            <li>5</li>
-            <li>Excellent</li>
-         </ul>
-      </ul>
-      <form action="" method="post">
-         <div class="w-100 w-80-ns mt5 center flex flex-column">
-            <h3 class="tc mt0">Gaming</h3>
-            <div class="flex flex-row flex-wrap justify-center tc">
-               <div class="tc w-100 w-50-m w-30-l mh2 mb3">
-                  <h4 class="tc mt0 mh0 justify-center center">Product 1 has a very very very very long name</h4>
-                  <div class="flex flex-row tc ph3 justify-center">
-                     <div class="mb3 flex flex-column ph2">
-                        <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_1" />
-                        <label for="p1_t1_1" class=" pointer ">1</label>
-                     </div>
-                     <div class="mb3 flex flex-column ph2">
-                        <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_2" />
-                        <label for="p1_t1_2" class=" pointer">2</label>
-                     </div>
-                     <div class="mb3 flex flex-column ph2">
-                        <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_3" />
-                        <label for="p1_t1_3" class=" pointer">3</label>
-                     </div>
-                     <div class="mb3 flex flex-column ph2">
-                        <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_4" />
-                        <label for="p1_t1_4" class=" pointer">4</label>
-                     </div>
-                     <div class="mb3 flex flex-column ph2" >
-                        <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_5" />
-                        <label for="p1_t1_5" class="pointer">5</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
+      <div class="bar bg-light-gray z-1 absolute"></div>
+      <div class="flex flex-column ph3 z-2">
+         <a href="step1.html" class="link dim pointer mv3 blue f6 tc">Setup</a>
+         <div class="flex flex-row align-items justify-center">
+           <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+             <div class="active-circle bg-white br-100 relative" id="circle-1">
+                <a href="step1.html" class="link f7 pa2 light-silver absolute absolute-center tc">1</a>
+             </div>
+          </div>
          </div>
-      </form>
-      <div class="mt5 tc cf">
-         <a href="step3.html" class="dim bg-silver  br1 pv3 ph4 ph5-ns f6 link white">Back</a>
-         <a href="step5.html" class="dim bg-blue br1 pv3 ph4 ph5-ns f6 link white">Next</a>
       </div>
+      <div class="flex flex-column ph3 z-3">
+         <a href="step2.html" class="link dim pointer mv3 blue f6 tc">Products</a>
+         <div class="flex flex-row align-items justify-center">
+           <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+             <div class="active-circle bg-white br-100 relative" id="circle-1">
+                <a href="step2.html" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
+             </div>
+          </div>
+         </div>
+      </div>
+      <div class="flex flex-column ph3 z-3">
+         <a href="step3.html" class="link dim pointer mv3 blue f6 tc">Traits</a>
+         <div class="flex flex-row align-items justify-center">
+           <div class="w2 h2 bg-light-gray br-100 flex justify-center items-center">
+             <div class="active-circle bg-white br-100 relative" id="circle-1">
+                <a href="step3.html" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
+             </div>
+          </div>
+         </div>
+      </div>
+      <div class="flex flex-column ph3 z-3">
+         <a href="step4.html" class="link dim pointer mv3 blue f6 tc">Ranking</a>
+         <div class="flex flex-row align-items justify-center">
+           <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+             <div class="active-circle bg-blue br-100 relative" id="circle-1">
+                <a href="step4.html" class="link f7 pa2 absolute near-white absolute-center tc">4</a>
+             </div>
+          </div>
+         </div>
+      </div>
+   </div>
+    <h1 class="mt5 mb0 tc">Rank your products</h1>
+    <p class="silver tc">Rank the traits of your products on the following scale:</p>
+    <ul class="list pl0 flex flex-row flex-wrap justify-center silver">
+       <ul class="list pl0 flex flex-column tc ph3">
+          <li>1</li>
+          <li>Poor</li>
+       </ul>
+       <ul class="list pl0 flex flex-column tc ph3">
+          <li>2</li>
+          <li>Fair</li>
+       </ul>
+       <ul class="list pl0 flex flex-column tc ph3">
+          <li>3</li>
+          <li>Good</li>
+       </ul>
+       <ul class="list pl0 flex flex-column tc ph3">
+          <li>4</li>
+          <li>Great</li>
+       </ul>
+       <ul class="list pl0 flex flex-column tc ph3">
+          <li>5</li>
+          <li>Excellent</li>
+       </ul>
+    </ul>
+    <form action="" method="post">
+       <div class="w-100 w-80-ns mt5 center flex flex-column">
+          <h3 class="tc mt0">Gaming</h3>
+          <div class="flex flex-row flex-wrap justify-center tc">
+             <div class="tc w-100 w-50-m w-30-l mh2 mb3">
+                <h4 class="tc mt0 mh0 justify-center center">Product 1 has a very very very very long name</h4>
+                <div class="flex flex-row tc ph3 justify-center">
+                   <div class="mb3 flex flex-column ph2">
+                      <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_1" />
+                      <label for="p1_t1_1" class=" pointer ">1</label>
+                   </div>
+                   <div class="mb3 flex flex-column ph2">
+                      <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_2" />
+                      <label for="p1_t1_2" class=" pointer">2</label>
+                   </div>
+                   <div class="mb3 flex flex-column ph2">
+                      <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_3" />
+                      <label for="p1_t1_3" class=" pointer">3</label>
+                   </div>
+                   <div class="mb3 flex flex-column ph2">
+                      <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_4" />
+                      <label for="p1_t1_4" class=" pointer">4</label>
+                   </div>
+                   <div class="mb3 flex flex-column ph2" >
+                      <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_5" />
+                      <label for="p1_t1_5" class="pointer">5</label>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </form>
+    <div class="mt5 tc cf">
+       <a href="step3.html" class="dim bg-silver  br1 pv3 ph4 ph5-ns f6 link white">Back</a>
+       <a href="step5.html" class="dim bg-blue br1 pv3 ph4 ph5-ns f6 link white">Submit</a>
+    </div>
    </div>
 </body>
 </html>
