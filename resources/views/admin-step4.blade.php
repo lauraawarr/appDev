@@ -12,37 +12,55 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
-       <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
+      <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
         <a href="../admin" class="link dim dark-gray mr4 pb2">Quizzes</a>
         <a href="../admin-step1/0" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
       </nav>
-       <div class="bg-white mt5 ph3 pv5">
+      <div class="bg-white mt5 ph3 pv5">
          <div class="flex justify-center items-center w-100 light-silver">
-            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-               <div class="br-100 relative" id="circle-1">
-                  <span class="f7 absolute absolute-center">1</span>
-               </div>
-            </div>
-            <span class="bar bg-light-gray w-5"></span>
-            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
-               <div class="br-100 relative" id="circle-2">
-                  <span class="f7 absolute absolute-center">2</span>
-               </div>
-            </div>
-            <span class="bar bg-light-gray w-5"></span>
-            <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-               <div class="br-100 relative" id="circle-3">
-                  <span class="f7 absolute absolute-center">3</span>
-               </div>
-            </div>
-            <span class="bar bg-light-gray w-5"></span>
-            <div class="w2 h2 br-100  bg-light-gray flex justify-center items-center">
-               <div class="active-circle bg-blue br-100 relative" id="circle-4">
-                  <span class="f7 near-white absolute absolute-center">4</span>
-               </div>
-            </div>
-         </div>
-          <h1 class="mt5 mb0 tc">Rank your products</h1>
+          <div class="bar bg-light-gray z-1 absolute"></div>
+          <div class="flex flex-column ph3 z-2">
+             <a href="../admin-step1/{{ $quizId }}" class="link dim pointer mv3 blue f6 tc">Setup</a>
+             <div class="flex flex-row align-items justify-center">
+               <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                 <div class="active-circle bg-white br-100 relative" id="circle-1">
+                    <a href="../admin-step1/{{ $quizId }}" class="link f7 pa2 light-silver absolute absolute-center tc">1</a>
+                 </div>
+              </div>
+             </div>
+          </div>
+          <div class="flex flex-column ph3 z-3">
+             <a href="../admin-step2/{{ $quizId }}" class="link dim pointer mv3 blue f6 tc">Products</a>
+             <div class="flex flex-row align-items justify-center">
+               <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                 <div class="active-circle bg-white br-100 relative" id="circle-1">
+                    <a href="../admin-step2/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
+                 </div>
+              </div>
+             </div>
+          </div>
+          <div class="flex flex-column ph3 z-3">
+             <a href="../admin-step3/{{ $quizId }}" class="link dim pointer mv3 blue f6 tc">Traits</a>
+             <div class="flex flex-row align-items justify-center">
+               <div class="w2 h2 bg-light-gray br-100 flex justify-center items-center">
+                 <div class="active-circle bg-white br-100 relative" id="circle-1">
+                    <a href="../admin-step3/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
+                 </div>
+              </div>
+             </div>
+          </div>
+          <div class="flex flex-column ph3 z-3">
+             <a href="../admin-step4/{{ $quizId }}" class="link dim pointer mv3 blue f6 tc">Ranking</a>
+             <div class="flex flex-row align-items justify-center">
+               <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+                 <div class="active-circle bg-blue br-100 relative" id="circle-1">
+                    <a href="../admin-step4/{{ $quizId }}" class="link f7 pa2 absolute near-white absolute-center tc">4</a>
+                 </div>
+              </div>
+             </div>
+          </div>
+       </div>
+      <h1 class="w-100 w-50-ns mt5 mb0 center tc">Rank your products</h1>
           <p class="silver tc">Rank the traits of your products on the following scale:</p>
           <ul class="list pl0 flex flex-row justify-center silver">
              <ul class="list pl0 flex flex-column tc ph3">

@@ -48,7 +48,7 @@ function previewFile( file ) {
 
 /* Preview added products as thumbnails */
 function previewProduct( name, des, imgSrc ){
-	$('#products').prepend( '<img src="' + imgSrc + '" height="200">');
+	$('#products').prepend( '<div class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div class="link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);
 	$('#image-name').text( null );

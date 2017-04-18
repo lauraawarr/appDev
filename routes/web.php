@@ -15,15 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
-
 Route::get('/admin', 'UserController@getQuizzes');
-
-Route::get('/admin-step1/{quizId}', function () {
-    return view('admin-step1');
-});
 
 Route::get('/admin-step1/{quizId}', 'UserController@getStep1');
 
@@ -33,21 +25,11 @@ Route::get('/admin-step2/{quizId}', function () {
 
 Route::get('/admin-step2/{quizId}', 'UserController@getStep2');
 
-Route::get('/admin-step3/{quizId}', function () {
-    return view('admin-step3');
-});
-
 Route::get('/admin-step3/{quizId}', 'UserController@getStep3');
-
-Route::get('/admin-step4', function () {
-    return view('admin-step4');
-});
 
 Route::get('/admin-step4/{quizId}', 'UserController@getStep4');
 
-Route::get('/admin-step5/{quizId}', function () {
-    return view('admin-step5');
-});
+Route::get('/admin-step5/{quizId}', 'UserController@getStep5');
 
 Route::post('/newQuiz', 'UserController@newQuiz');
 
@@ -55,8 +37,7 @@ Route::get('/questions', function () {
     return view('questions');
 });
 
-Route::get('/questions', 'UserController@getTraits');
-
+Route::get('/quiz/{quizId}', 'UserController@getQuiz');
 
 Route::get('/results', function () {
     return view('results');

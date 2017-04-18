@@ -21,25 +21,25 @@ class UserController extends Controller
 
     public function getStep2( $quizId )
     {
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
         return view('admin-step2', ['products' => $products, 'quizId' => $quizId ]);
     }
 
     public function getStep3( $quizId )
     {
-        $traits = DB::table('traits')->orderBy('id', 'desc')->get();
+        $traits = DB::table($quizId.'_traits')->orderBy('id', 'desc')->get();
 
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
         return view('admin-step3', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
     }
 
 	public function getStep4(  $quizId )
     {
-        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
+        $traits = DB::table($quizId.'_traits')->get();
 
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
     	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
     }
@@ -51,11 +51,20 @@ class UserController extends Controller
 
     public function getTraits()
     {
-        $traits = DB::table('traits')
-        				->orderBy('inventoryCol')
-        				->get();
+        $traits = DB::table('traits')->get();
 
-    	return view('questions', ['traits' => $traits]);
+    	return view('quiz', ['traits' => $traits]);
+    }
+
+     public function getQuiz( $quizId )
+    {
+        $quiz = DB::table('quizzes')->where('id', '=', $quizId )->get();
+
+        $traits = DB::table('traits')
+                        ->orderBy('id')
+                        ->get();
+
+        return view('quiz', ['quiz' => $quiz[0], 'traits' => $traits ]);
     }
 
     public function getQuizzes()
@@ -106,6 +115,19 @@ class UserController extends Controller
         $result = DB::table('quizzes')->insert([ 'id'=> null, 'name' => $name, 'description' => $description]);
         $quizId = DB::getPdo()->lastInsertId();
 
+        Schema::create( $quizId . '_inventory', function ($table) {
+            $table->increments('id');
+            $table->text('name');
+            $table->text('description');
+            $table->text('img');
+            $table->text('rankings');
+        });
+
+        Schema::create( $quizId . '_traits', function ($table) {
+            $table->increments('id');
+            $table->text('trait');
+        });
+
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
@@ -115,7 +137,7 @@ class UserController extends Controller
     	$description = $request->description;
     	$img = $request->image;
 
-    	$result = DB::table('inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img]);
+    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img]);
   
     	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
     }
@@ -124,7 +146,7 @@ class UserController extends Controller
     {
     	$trait = $request->trait;
 
-    	$result = DB::table('traits')->insert([ 'id'=> null, 'trait' => $trait, 'inventoryCol' => 0]);
+    	$result = DB::table($quizId.'_traits')->insert([ 'id'=> null, 'trait' => $trait ]);
   
     	return response()->json(['result'=> $result, 'trait' => $trait ]);
     }

@@ -9,7 +9,7 @@ $(document).ready(function() {
    var inTime = 600;
 
    // IMPORTANT. This number needs to be dynamically set
-   var totalQuestions = 4;
+   // var totalQuestions = 4;
    var percentageDone = 0;
 
    for (i=1; i<totalQuestions+1; i++) {
@@ -20,7 +20,7 @@ $(document).ready(function() {
       $(".q" + questionNum).on("click", function() {
 
          // update progress bar
-         percentageDone = questionNum/totalQuestions * 100;
+         percentageDone = Math.round(questionNum/totalQuestions * 100);
          $("#quiz-bar").css("width", percentageDone + "%");
          $("#done-text").html(percentageDone);
 

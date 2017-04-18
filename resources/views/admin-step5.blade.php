@@ -19,7 +19,7 @@
           <h1 class="mt0 tc">Success!</h1>
           <p class="silver tc">Your quiz is now ready to be shared.</p>
           <div class="mt5 mb2 tc">
-             <a href="quiz.html" class="dim bg-blue br1 pv3 ph5 f6 link white center">Preview</a>
+             <a href="../quiz/{{ $quizId }}" class="dim bg-blue br1 pv3 ph5 f6 link white center">Preview</a>
           </div>
        </div>
     </body>
