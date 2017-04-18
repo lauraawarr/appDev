@@ -35,3 +35,11 @@
 .right-5-m {
   right: 6em;
 }
+
+.remove-link {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  height: 1em;
+  width: 1em;
+}

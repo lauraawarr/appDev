@@ -4,7 +4,7 @@ $(document).ready(function() {
   // page.
   $.each(compare_items, function() {
     $('#results').append('<div class="ind-result dtc-ns tc ba pv4 relative '+this.id+'">'+
-      '<a href="#" class="pointer absolute ba top-0-m right-6-m" id="'+this.id+'"">X</a>'+
+      '<a href="#" class="pointer no-underline top-0-m right-6-m remove-link" id="'+this.id+'""><span class="b blue link link:hover link:active">X</span></a>'+
       '<h3 class="silver f4 b">'+this.name+'</h3><div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6">'+
       '</div></div>');
   });
@@ -22,7 +22,7 @@ $(document).ready(function() {
           localStorage.setItem('array', JSON.stringify(remove_array));
         }
       }
-      e.target.parentNode.remove();
+      e.target.parentNode.parentNode.remove();
     } else {
       console.log('no id attribute');
     }
