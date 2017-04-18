@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function getStep3( $quizId )
     {
-        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
+        $traits = DB::table('traits')->orderBy('id', 'desc')->get();
 
         $products = DB::table('inventory')->orderBy('id', 'desc')->get();
 
