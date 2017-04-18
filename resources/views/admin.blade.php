@@ -16,7 +16,7 @@
           <a href="step1.html" class="link dim dark-gray mr4 pb2">Create quiz</a>
           <div class="bg-blue h3 w3 br-100 absolute bottom--2 right-1 right-3-ns">
              <div class="absolute absolute-center">
-                <a href="step1.html" class="f4 near-white link">+</a>
+                <a href="admin-step1/0" class="f4 near-white link">+</a>
              </div>
           </div>
        </nav>
@@ -31,7 +31,7 @@
 
         @else
             @foreach ( $quizzes as $q )
-            <div class="bg-white mt4 pv5 ph5">
+            <div class="bg-white mt5 pv5 ph5">
              <h3 class="mv0">{{ $q -> name }}</h3>
              <p>{{ $q -> description }}</p>
              <div class="mt5 mb2">
