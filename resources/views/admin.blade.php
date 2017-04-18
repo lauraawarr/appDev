@@ -16,7 +16,7 @@
           <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
           <div class="bg-blue h3 w3 f4 near-white br-100 absolute bottom--2 right-3">
              <div class="absolute absolute-center">
-                <a href="admin-step1" class="link white">+</a>
+                <a href="admin-step1/0" class="link white">+</a>
              </div>
           </div>
        </nav>
@@ -25,7 +25,7 @@
           <h1 class="mt0">Create your first quiz</h1>
           <p class="silver">Tap the + button to begin</p>
           <div class="mt5 mb2">
-             <a href="admin-step1" class="dim bg-blue br1 pv3 ph5 f6 link white">Begin</a>
+             <a href="admin-step1/0" class="dim bg-blue br1 pv3 ph5 f6 link white">Begin</a>
           </div>
         </div>
 
@@ -35,7 +35,7 @@
              <h3 class="mv0">{{ $q -> name }}</h3>
              <p>{{ $q -> description }}</p>
              <div class="mt5 mb2">
-                <a href="" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
+                <a href="admin-step1/{{ $q -> id }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
                 <a href="quiz.html" class="dim bg-blue br1 pv3 ph5 f6 link white">Preview</a>
              </div>
             </div>

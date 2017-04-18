@@ -7,8 +7,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>Admin</title>
-        <link rel="stylesheet" href="./css/tachyons.css">
-       <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="../css/tachyons.css">
+       <link rel="stylesheet" href="../css/style.css">
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">

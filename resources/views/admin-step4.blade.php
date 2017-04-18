@@ -8,8 +8,8 @@
 
         <title>Step 4</title>
 
-        <link rel="stylesheet" href="./css/tachyons.css">
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="../css/tachyons.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
@@ -76,12 +76,12 @@
             @endforeach
           </form>
           <div class="mt5 mb2 tc cf">
-             <a href="admin-step3" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a href="admin-step5" class="dim bg-blue br1 pv3 ph5 f6 link white">Next</a>
+             <a href="../admin-step3/{{ $quizId }}" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
+             <a href="../admin-step5/{{ $quizId }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Next</a>
           </div>
        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/admin.js"></script>
+        <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>
