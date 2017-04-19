@@ -16,7 +16,7 @@
           <a href="admin-step1/0" class="link dim dark-gray mr4 pb2">Create quiz</a>
           <div class="bg-blue h3 w3 br-100 absolute bottom--2 right-3">
              <div class="absolute absolute-center">
-                <a href="step1.html" class="f4 near-white link">+</a>
+                <a href="admin-step1/0" class="f4 near-white link">+</a>
              </div>
           </div>
        </nav>

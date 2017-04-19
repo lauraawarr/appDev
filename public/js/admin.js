@@ -10,21 +10,24 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 	var name = ($('#' + hash + '-Name').val() || null );
 	var description = ($('#' + hash + '-Description').val() || null );
 	var image = imgName;
+	console.log( image );
 	var data = {
 		trait : trait,
 		name: name,
 		description: description,
-		image: image
+		image: image,
+		quizId: quizId
 	};
 
 	if (hash == "submitProduct"){
 		ajaxData = data;
 		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
+	} else if (hash == "newQuiz"){
+		sendData( '../' + hash, data);
 	} else {
 		sendData( '../' + hash + '/' + quizId, data);
 	};
 
-	if ( name && description && imgSrc ) previewProduct( name, description, imgSrc );
 	if ( trait ) previewTrait( trait );
 
 });
@@ -56,7 +59,7 @@ function previewProduct( name, des, imgSrc ){
 
 /* Preview added trait in list */
 function previewTrait( trait ){
-	$('#traits').prepend( '<div>' + trait + '</div>');
+	$('#traits').prepend( '<div class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a href="" class="ttu f7 mr2 link blue">Edit</a><a href="" class="link blue ml1">x</a></span></div>');
 	$('#submitTrait-Trait').val(null);
 };
 
@@ -84,7 +87,8 @@ function sendData( url, data, process, type ){
 			if (url.includes("newQuiz") || url.includes("updateQuiz")) window.location.href = "../admin-step2/" + data.quizId;
 			if (url.includes("uploadImage")){
 				ajaxData.image = data.imgName;
-				sendData( '../submitProduct/' + quizId, ajaxData);
+				previewProduct( ajaxData.name, ajaxData.description, ajaxData.image );
+				sendData( '../submitProduct', ajaxData);
 			}; 
 		},
 		error: function( data ){

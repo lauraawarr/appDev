@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Schema;
 use DB;
 use App\Http\Requests;
-
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         $quiz = DB::table('quizzes')->where('id', '=', $quizId )->get();
 
-        $traits = DB::table('traits')
+        $traits = DB::table($quizId.'_traits')
                         ->orderBy('id')
                         ->get();
 
@@ -131,13 +131,14 @@ class UserController extends Controller
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
-    public function submitProduct(Request $request, $quizId)
+    public function submitProduct(Request $request)
     {
-    	$name = $request->name;
+    	$quizId = $request->quizId;
+        $name = $request->name;
     	$description = $request->description;
     	$img = $request->image;
 
-    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img]);
+    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img, 'rankings' => 0]);
   
     	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
     }
