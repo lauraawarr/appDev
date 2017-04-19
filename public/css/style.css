@@ -3,7 +3,14 @@
   src: url('../fonts/AvenirNext.ttf');
 }
 
+@font-face {
+  font-family: 'Nunito-Black';
+  src: url('../fonts/Nunito-Black.ttf');
+}
+
 .avenir-next { font-family: "AvenirNext", sans-serif; }
+
+.nunito { font-family: "Nunito-Black", sans-serif; }
 
 .bar {
   height: 5px;
@@ -32,7 +39,7 @@
 .dn-1 { display: none; }
 .dn-2 { display: none; }
 
-.right-5-m {
+/*.right-5-m {
   right: 6em;
 }
 
@@ -42,4 +49,4 @@
   right: 1em;
   height: 1em;
   width: 1em;
-}
+}*/
