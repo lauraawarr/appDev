@@ -10,7 +10,7 @@
         <title>Results</title>
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
-      <!-- Used Nicole's navigation and styling -->
+      <!-- Used Nicole's navigation and styling for the navigation -->
         <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
           <a href="../../quiz-home.html" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
           <a href="../../step1.html" class="link dark-gray mr4 pb2">Create quiz</a>
