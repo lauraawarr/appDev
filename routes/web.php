@@ -39,11 +39,7 @@ Route::get('/questions', function () {
 
 Route::get('/quiz/{quizId}', 'UserController@getQuiz');
 
-Route::get('/results', function () {
-    return view('results');
-});
-
-Route::get('/results/{userArray}', 'UserController@getResult');
+Route::get('/results/{quizId}/{userArray}', 'UserController@getResult');
 
 Route::post('/submitProduct', 'UserController@SubmitProduct');
 
