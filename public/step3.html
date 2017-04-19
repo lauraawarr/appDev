@@ -11,6 +11,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="./css/tachyons.css">
    <link rel="stylesheet" href="./css/style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="./js/step3.js"></script>
 </head>
 <body class="avenir-next pa4 bg-washed-blue fw3 f5">
   <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
@@ -62,12 +64,15 @@
       </div>
    </div>
     <h1 class="w-100 w-50-ns mt5 mb0 center tc">Add traits to your products</h1>
+    <div class="tc mt4 blue f6 error-message">
+
+    </div>
     <form action="" method="post">
-       <div class="w-100 w-50-ns mt5 center" id="question-1">
+       <div class="w-100 w-50-ns mt4 center" id="question-1">
           <h3 class="f5 mt0">Trait</h3>
           <div class="pb4">
-             <input type="text" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
-             <input type="submit" value="Add" class="dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
+             <input type="text" name="trait-name" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
+             <input type="submit" value="Add" class="dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer cta-button">
           </div>
        </div>
     </form>
