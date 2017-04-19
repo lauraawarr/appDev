@@ -84,7 +84,7 @@
                 <li>Excellent</li>
              </ul>
           </ul>
-          <form action="" method="post">
+          <form id="ranking" action="" method="post">
              @for ( $t = 0; $t < count($traits); $t++ )
              <div class="w-100 w-80-ns mt5 center flex flex-column">
                 <h3 class="tc mt0">{{ ucfirst($traits[$t] -> trait) }}</h3>
@@ -93,26 +93,16 @@
                        <div class="tc w-100 w-50-m w-30-l mh2 mb3">
                           <h4 class="tc mt0 mh0 justify-center center">{{ ucfirst($products[$p] -> name) }}</h4>
                           <div class="flex flex-row tc ph3 justify-center">
-                             <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_1" />
-                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_1" class=" pointer ">1</label>
-                             </div>
-                             <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_2" />
-                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_2" class=" pointer">2</label>
-                             </div>
-                             <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_3" />
-                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_3" class=" pointer">3</label>
-                             </div>
-                             <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_4" />
-                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_4" class=" pointer">4</label>
-                             </div>
-                             <div class="mb3 flex flex-column ph2" >
-                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_5" />
-                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_5" class="pointer">5</label>
-                             </div>
+
+                              @for ($i = 1; $i <= 5; $i++ )
+                                <div class="mb3 flex flex-column ph2">
+                                  <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" value="{{ $i }}" 
+                                  <? if ($selections['p'.( $p + 1 ).'_'.( $t + 1 )] == $i) echo 'checked' ?> 
+                                  class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_{{ $i }}" />
+                                  <label for="p{{ $p + 1 }}_{{ $t + 1 }}_{{ $i }}" class=" pointer ">{{ $i }}</label>
+                               </div>
+                              @endfor
+
                           </div>
                        </div>
                     @endfor
@@ -122,11 +112,15 @@
           </form>
           <div class="mt5 mb2 tc cf">
              <a href="../admin-step3/{{ $quizId }}" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a href="../admin-step5/{{ $quizId }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Save</a>
+             <a id="submitRanks"  class="submit dim bg-blue br1 pv3 ph5 f6 link white">Save</a>
           </div>
        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+          var quizId = "{{ $quizId }}";
+          console.log( quizId );
+        </script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

@@ -41,9 +41,15 @@ Route::get('/quiz/{quizId}', 'UserController@getQuiz');
 
 Route::get('/results/{quizId}/{userArray}', 'UserController@getResult');
 
+Route::post('/removeQuiz', 'UserController@removeQuiz');
+
 Route::post('/removeProduct/{quizId}', 'UserController@removeProduct');
 
+Route::post('/removeTrait/{quizId}', 'UserController@removeTrait');
+
 Route::post('/submitProduct', 'UserController@SubmitProduct');
+
+Route::post('/submitRanks/{quizId}', 'UserController@SubmitRanks');
 
 Route::post('/submitTrait/{quizId}', 'UserController@SubmitTrait');
 
