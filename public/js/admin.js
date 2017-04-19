@@ -31,8 +31,8 @@ function getRoute( ev ){
 		ajaxData = data;
 		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
 
-	} else if (hash == "submitRanks"){
-		sendData( '../' + hash + '/' + quizId, new FormData($('#ranking')[0]), false, false);
+	} else if (hash.includes("submitRanks")){
+		sendData( '../submitRanks/' + quizId, new FormData($('#ranking')[0]), false, false);
 
 	} else if (hash.includes("removeQuiz")){
 		sendData( hash, data); 
@@ -74,7 +74,7 @@ function previewFile( file ) {
 
 /* Preview added products as thumbnails */
 function previewProduct( name, des, imgSrc, prodId){
-	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><div class="h4"><img src="../uploads/'+imgSrc +'" class="max-h4 mt2"/></div><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
 	$('#removeProduct-'+ prodId).on('mousedown', function(ev){ getRoute(ev) });
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);

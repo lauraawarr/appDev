@@ -163,6 +163,26 @@ class UserController extends Controller
     {
         $quizId = $request->quizId;
         $removeId = $request->removeId;
+        $removeIndex = null;
+
+        $traits = DB::table($quizId.'_traits')->orderBy('id')->get();
+        $products = DB::table($quizId.'_inventory')->get();
+
+        for ($i = 0; $i < count( $traits ); $i++){
+            if ($traits[$i]->id == $removeId){
+                $removeIndex = $i;
+                break;
+            };
+        };
+
+        if ($removeIndex){
+            foreach ($products as $p) {
+                $rankArray = explode(',', $p->rankings);
+                array_splice($rankArray, $removeIndex, 1);
+                $rankStr = implode(',', $rankArray);
+                DB::table($quizId.'_inventory')->where('id', '=', $p->id )->update(['rankings' => $rankStr]);
+            };
+        };
 
         $deletedRows = DB::table($quizId.'_traits')->where('id', '=', $removeId )->delete();
         $traitId = DB::getPdo()->lastInsertId();
@@ -204,6 +224,12 @@ class UserController extends Controller
     public function submitTrait(Request $request, $quizId)
     {
     	$trait = $request->trait;
+
+        $prods = DB::table($quizId.'_inventory')->get();
+        foreach ($prods as $p) {
+            $r = ($p->rankings)."0,";
+            DB::table($quizId.'_inventory')->update(['rankings' => $r]);
+        };
 
     	$result = DB::table($quizId.'_traits')->insert([ 'id'=> null, 'trait' => $trait ]);
         $traitId = DB::getPdo()->lastInsertId();
