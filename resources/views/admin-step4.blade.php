@@ -85,40 +85,40 @@
              </ul>
           </ul>
           <form action="" method="post">
-             @foreach ( $traits as $t )
+             @for ( $t = 0; $t < count($traits); $t++ )
              <div class="w-100 w-80-ns mt5 center flex flex-column">
-                <h3 class="tc mt0">{{ ucfirst($t-> trait) }}</h3>
+                <h3 class="tc mt0">{{ ucfirst($traits[$t] -> trait) }}</h3>
                 <div class="flex flex-row flex-wrap justify-center tc">
-                    @foreach ( $products as $p )
+                    @for ( $p = 0; $p < count($products); $p++  )
                        <div class="tc w-100 w-50-m w-30-l mh2 mb3">
-                          <h4 class="tc mt0 mh0 justify-center center">{{ ucfirst($p -> name) }}</h4>
+                          <h4 class="tc mt0 mh0 justify-center center">{{ ucfirst($products[$p] -> name) }}</h4>
                           <div class="flex flex-row tc ph3 justify-center">
                              <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_1" />
-                                <label for="p1_t1_1" class=" pointer ">1</label>
+                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_1" />
+                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_1" class=" pointer ">1</label>
                              </div>
                              <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_2" />
-                                <label for="p1_t1_2" class=" pointer">2</label>
+                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_2" />
+                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_2" class=" pointer">2</label>
                              </div>
                              <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_3" />
-                                <label for="p1_t1_3" class=" pointer">3</label>
+                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_3" />
+                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_3" class=" pointer">3</label>
                              </div>
                              <div class="mb3 flex flex-column ph2">
-                                <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_4" />
-                                <label for="p1_t1_4" class=" pointer">4</label>
+                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_4" />
+                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_4" class=" pointer">4</label>
                              </div>
                              <div class="mb3 flex flex-column ph2" >
-                                <input type="radio" name="p1_t1" class=" mb2 pointer q1 justify-center center" id="p1_t1_5" />
-                                <label for="p1_t1_5" class="pointer">5</label>
+                                <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_5" />
+                                <label for="p{{ $p + 1 }}_{{ $t + 1 }}_5" class="pointer">5</label>
                              </div>
                           </div>
                        </div>
-                    @endforeach
+                    @endfor
                 </div>
              </div>
-            @endforeach
+            @endfor
           </form>
           <div class="mt5 mb2 tc cf">
              <a href="../admin-step3/{{ $quizId }}" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>

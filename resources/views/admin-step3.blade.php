@@ -92,6 +92,10 @@
          </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+          var quizId = "{{ $quizId }}";
+          console.log( quizId );
+        </script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

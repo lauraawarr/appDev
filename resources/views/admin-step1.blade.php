@@ -97,7 +97,7 @@ if ( isset($quiz[0] -> id) ){
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
-          var quizId = ("@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif" || null );
+          var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
         </script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
