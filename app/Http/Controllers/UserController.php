@@ -131,6 +131,17 @@ class UserController extends Controller
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
     }
 
+    public function removeProduct(Request $request)
+    {
+        $quizId = $request->quizId;
+        $removeId = $request->removeId;
+
+        $deletedRows = DB::table($quizId.'_inventory')->where('id', '=', $removeId )->delete();
+        $prodId = DB::getPdo()->lastInsertId();
+
+        return response()->json(['result'=> $deletedRows, 'prodId' => $prodId ]);
+    }
+
     public function submitProduct(Request $request)
     {
     	$quizId = $request->quizId;
@@ -139,8 +150,9 @@ class UserController extends Controller
     	$img = $request->image;
 
     	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img, 'rankings' => 0]);
-  
-    	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
+        $prodId = DB::getPdo()->lastInsertId();
+
+    	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img, 'prodId' => $prodId ]);
     }
 
      public function submitTrait(Request $request, $quizId)

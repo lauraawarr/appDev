@@ -90,8 +90,8 @@
 
          <div id="products" class="mt5 w-100 w-50-ns center flex flex-wrap justify-center br1">
             @foreach ( $products as $p )
-              <div class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
-                <div class="link blue absolute top-1p right-1 delete-product pointer">x</div>
+              <div id="Product-{{ $p -> id }}" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
+                <div id="removeProduct-{{ $p -> id }}" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div>
                 <img src="../uploads/{{ $p -> img }}" width="333" class="w-90 mt2"/>
                 <p class="f6">
                    {{ $p -> name }}

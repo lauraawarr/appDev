@@ -8,7 +8,14 @@
 		// If user array is longer, extra elements are ignored
 		$total = 0;
 		for ($i = 0; $i < count($y) ; $i++){
-			if (!isset($x[$i])) $x[$i] = 0;
+			if (!isset($x[$i])) {
+				$x[$i] = 0;
+			} else if ( $x[$i] > 5){ 
+				$x[$i] = 5;
+			} else if ( $x[$i] < 1){
+				$x[$i] = 1;
+			};
+
 			$total = $total + (pow( 2 , $x[$i])*$y[$i]);
 		};
 		return $total;

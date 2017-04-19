@@ -4,13 +4,14 @@ var imgFile = null;
 var ajaxData;
 
 /* Listen to click event on any submit button and handles case based on id */
-$('input[type=submit], .submit').on('mousedown', function(ev){
+$('input[type=submit], .submit').on('mousedown', function(ev){ getRoute(ev)});
+
+function getRoute( ev ){
 	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
 	var name = ($('#' + hash + '-Name').val() || null );
 	var description = ($('#' + hash + '-Description').val() || null );
 	var image = imgName;
-	console.log( image );
 	var data = {
 		trait : trait,
 		name: name,
@@ -22,6 +23,16 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 	if (hash == "submitProduct"){
 		ajaxData = data;
 		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
+	} else if (hash.includes("removeProduct") || hash.includes("removeTrait")){
+		var tempArray = hash.split("-");
+		var url = tempArray[0];
+		var removeId = tempArray[1];
+		ajaxData = data;
+		ajaxData.removeId = removeId;
+		console.log( url );
+		sendData( '../' + url + '/' + quizId, ajaxData );
+		$( '#' + url.replace('remove', '') + '-' + removeId).hide('slow');
+
 	} else if (hash == "newQuiz"){
 		sendData( '../' + hash, data);
 	} else {
@@ -29,8 +40,7 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 	};
 
 	if ( trait ) previewTrait( trait );
-
-});
+};
 
 /* Upload an image */
 function previewFile( file ) {
@@ -50,8 +60,9 @@ function previewFile( file ) {
 };
 
 /* Preview added products as thumbnails */
-function previewProduct( name, des, imgSrc ){
-	$('#products').prepend( '<div class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div class="link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+function previewProduct( name, des, imgSrc, prodId){
+	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+	$('#removeProduct-'+ prodId).on('mousedown', function(ev){ getRoute(ev) });
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);
 	$('#image-name').text( null );
@@ -85,9 +96,11 @@ function sendData( url, data, process, type ){
 	    	var response = data.result;
 			console.log( data );
 			if (url.includes("newQuiz") || url.includes("updateQuiz")) window.location.href = "../admin-step2/" + data.quizId;
+			if (url.includes("submitProduct")){
+				previewProduct( data.name, data.description, data.img, data.prodId );
+			};
 			if (url.includes("uploadImage")){
 				ajaxData.image = data.imgName;
-				previewProduct( ajaxData.name, ajaxData.description, ajaxData.image );
 				sendData( '../submitProduct', ajaxData);
 			}; 
 		},
