@@ -1,8 +1,12 @@
 var imgName = null;
 var imgSrc = null;
+var imgFile = null;
+var ajaxData;
 
 /* Listen to click event on any submit button and handles case based on id */
-$('input[type=submit], .submit').on('mousedown', function(ev){
+$('input[type=submit], .submit').on('mousedown', function(ev){ getRoute(ev)});
+
+function getRoute( ev ){
 	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
 	var name = ($('#' + hash + '-Name').val() || null );
@@ -12,14 +16,31 @@ $('input[type=submit], .submit').on('mousedown', function(ev){
 		trait : trait,
 		name: name,
 		description: description,
-		image: image
+		image: image,
+		quizId: quizId
 	};
-	sendData( '../' + hash , data);
 
-	if ( name && description && imgSrc ) previewProduct( name, description, imgSrc );
+	if (hash == "submitProduct"){
+		ajaxData = data;
+		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
+	} else if (hash.includes("removeProduct") || hash.includes("removeTrait")){
+		var tempArray = hash.split("-");
+		var url = tempArray[0];
+		var removeId = tempArray[1];
+		ajaxData = data;
+		ajaxData.removeId = removeId;
+		console.log( url );
+		sendData( '../' + url + '/' + quizId, ajaxData );
+		$( '#' + url.replace('remove', '') + '-' + removeId).hide('slow');
+
+	} else if (hash == "newQuiz"){
+		sendData( '../' + hash, data);
+	} else {
+		sendData( '../' + hash + '/' + quizId, data);
+	};
+
 	if ( trait ) previewTrait( trait );
-
-});
+};
 
 /* Upload an image */
 function previewFile( file ) {
@@ -30,8 +51,7 @@ function previewFile( file ) {
     imgName = file.name;
     imgSrc = reader.result;
     $('#image-name').text( imgName );
-    console.log('Name: ', imgName);
-    // console.log(reader.result);
+    console.log( imgFile );
   }, false);
 
   if (file) {
@@ -40,8 +60,9 @@ function previewFile( file ) {
 };
 
 /* Preview added products as thumbnails */
-function previewProduct( name, des, imgSrc ){
-	$('#products').prepend( '<img src="' + imgSrc + '" height="200">');
+function previewProduct( name, des, imgSrc, prodId){
+	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+	$('#removeProduct-'+ prodId).on('mousedown', function(ev){ getRoute(ev) });
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);
 	$('#image-name').text( null );
@@ -49,16 +70,20 @@ function previewProduct( name, des, imgSrc ){
 
 /* Preview added trait in list */
 function previewTrait( trait ){
-	$('#traits').prepend( '<div>' + trait + '</div>');
+	$('#traits').prepend( '<div class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a href="" class="ttu f7 mr2 link blue">Edit</a><a href="" class="link blue ml1">x</a></span></div>');
 	$('#submitTrait-Trait').val(null);
 };
 
 /* Send user's data to the server and returns response */
-function sendData( url, data ){
+function sendData( url, data, process, type ){
+	if (process == null) process = true;
+	if (type == null) type = 'application/x-www-form-urlencoded; charset=UTF-8';
 	return $.ajax({
 		type: "POST",
 		url: url,
 		data: data,
+		contentType: type,
+		processData: process,
 		beforeSend: function (xhr) {
 	        // Function needed from Laravel because of the CSRF Middleware
 	        var token = $('meta[name="csrf-token"]').attr('content');
@@ -69,9 +94,15 @@ function sendData( url, data ){
 	    },
 	    success: function( data ){
 	    	var response = data.result;
-			console.log( data.quizId );
-			if (url == "../newQuiz") window.location.href = "../admin-step2/" + data.quizId;
-
+			console.log( data );
+			if (url.includes("newQuiz") || url.includes("updateQuiz")) window.location.href = "../admin-step2/" + data.quizId;
+			if (url.includes("submitProduct")){
+				previewProduct( data.name, data.description, data.img, data.prodId );
+			};
+			if (url.includes("uploadImage")){
+				ajaxData.image = data.imgName;
+				sendData( '../submitProduct', ajaxData);
+			}; 
 		},
 		error: function( data ){
 			console.log( "Error");

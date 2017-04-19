@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Schema;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -18,25 +21,25 @@ class UserController extends Controller
 
     public function getStep2( $quizId )
     {
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
         return view('admin-step2', ['products' => $products, 'quizId' => $quizId ]);
     }
 
     public function getStep3( $quizId )
     {
-        $traits = DB::table('traits')->orderBy('id', 'desc')->get();
+        $traits = DB::table($quizId.'_traits')->orderBy('id', 'desc')->get();
 
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
         return view('admin-step3', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
     }
 
 	public function getStep4(  $quizId )
     {
-        $traits = DB::table('traits')->orderBy('inventoryCol')->get();
+        $traits = DB::table($quizId.'_traits')->get();
 
-        $products = DB::table('inventory')->orderBy('id', 'desc')->get();
+        $products = DB::table($quizId.'_inventory')->orderBy('id', 'desc')->get();
 
     	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId]);
     }
@@ -48,11 +51,20 @@ class UserController extends Controller
 
     public function getTraits()
     {
-        $traits = DB::table('traits')
-        				->orderBy('inventoryCol')
-        				->get();
+        $traits = DB::table('traits')->get();
 
-    	return view('questions', ['traits' => $traits]);
+    	return view('quiz', ['traits' => $traits]);
+    }
+
+     public function getQuiz( $quizId )
+    {
+        $quiz = DB::table('quizzes')->where('id', '=', $quizId )->get();
+
+        $traits = DB::table($quizId.'_traits')
+                        ->orderBy('id')
+                        ->get();
+
+        return view('quiz', ['quiz' => $quiz[0], 'traits' => $traits ]);
     }
 
     public function getQuizzes()
@@ -62,20 +74,20 @@ class UserController extends Controller
         return view('admin', ['quizzes' => $quizzes]);
     }
 
-    public function getResult($userArray)
+    public function getResult($quizId, $userArray)
     {
     	$userArray = array_map('intval', str_split( $userArray , 1 ));
     	$topProdScores = [0,0,0,0];
     	$topProds = [null, null, null, null];
     	$lastIndex = count( $topProds ) - 1;
-    	$temp = [];
+    	$temp = $userArray;
 
-        $result = DB::table('inventory')->orderBy('id')->chunk(100, function($products) use ( &$temp, $userArray, &$topProdScores, &$topProds, $lastIndex ){
+        $products = DB::table($quizId.'_inventory')->orderBy('id')->get();//chunk(100, function($products) use ( &$temp, $userArray, &$topProdScores, &$topProds, $lastIndex ){
 
         	foreach ($products as $product) {
         		$prodArray = array_map('intval', explode( ',', $product->rankings ));
         		$prodScore = calcScore( $userArray, $prodArray);
-
+                array_push( $temp, $product);
 
         		$largestIndex = null;
         		for ($i = $lastIndex; $i > -1; $i--){
@@ -90,9 +102,9 @@ class UserController extends Controller
         			$topProdScores = insertAt( $topProdScores, $largestIndex, $prodScore );
     			};
         	};
-        });
+        // });
   
-    	return view('results', ['result' => $topProds ]);
+    	return view('results', ['result' => $products, 'quizId' => $quizId ]); //top prods
     }
 
     public function newQuiz(Request $request)
@@ -103,26 +115,84 @@ class UserController extends Controller
         $result = DB::table('quizzes')->insert([ 'id'=> null, 'name' => $name, 'description' => $description]);
         $quizId = DB::getPdo()->lastInsertId();
 
+        Schema::create( $quizId . '_inventory', function ($table) {
+            $table->increments('id');
+            $table->text('name');
+            $table->text('description');
+            $table->text('img');
+            $table->text('rankings');
+        });
+
+        Schema::create( $quizId . '_traits', function ($table) {
+            $table->increments('id');
+            $table->text('trait');
+        });
+
         return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
+    }
+
+    public function removeProduct(Request $request)
+    {
+        $quizId = $request->quizId;
+        $removeId = $request->removeId;
+
+        $deletedRows = DB::table($quizId.'_inventory')->where('id', '=', $removeId )->delete();
+        $prodId = DB::getPdo()->lastInsertId();
+
+        return response()->json(['result'=> $deletedRows, 'prodId' => $prodId ]);
     }
 
     public function submitProduct(Request $request)
     {
-    	$name = $request->name;
+    	$quizId = $request->quizId;
+        $name = $request->name;
     	$description = $request->description;
     	$img = $request->image;
 
-    	$result = DB::table('inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img]);
-  
-    	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img ]);
+    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img, 'rankings' => 0]);
+        $prodId = DB::getPdo()->lastInsertId();
+
+    	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img, 'prodId' => $prodId ]);
     }
 
-     public function submitTrait(Request $request)
+     public function submitTrait(Request $request, $quizId)
     {
     	$trait = $request->trait;
 
-    	$result = DB::table('traits')->insert([ 'id'=> null, 'trait' => $trait, 'inventoryCol' => 0]);
+    	$result = DB::table($quizId.'_traits')->insert([ 'id'=> null, 'trait' => $trait ]);
   
     	return response()->json(['result'=> $result, 'trait' => $trait ]);
+    }
+
+    public function updateQuiz(Request $request, $quizId)
+    {
+        $name = $request->name;
+        $description = $request->description;
+
+        $result = DB::table('quizzes')
+                ->where('id', $quizId)
+                ->update([ 'name' => $name, 'description' => $description]);
+
+        return response()->json(['result'=> $result, 'quizId'=> $quizId ]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $file = $request->image;
+
+        if ($file)
+        {
+           $result= "file present";
+           $path = $file->store('uploads');
+           Image::make($file->getRealPath())->save($path);
+        }
+        else{
+            $result= "file not present";
+            $path = $file->store('uploads');
+        }
+
+        $name = $request->image->hashName();
+
+        return response()->json(['result'=> $result, 'imgName'=> $name]);
     }
 }
