@@ -1,17 +1,1 @@
-$(document).ready(function() {
-
-   $(".delete-product").on("click", function() {
-      console.log($(this));
-      $(this).closest(".product").remove();
-   });
-
-   $(".cta-button").on("click", function(ev) {
-      if ($("input[name=product-name]").val() == undefined || $("input[name=product-name]").val() == "") {
-         ev.preventDefault();
-         $(".error-message").html("Please enter a product name.");
-      } else if ($("input[name=product-description]").val() == undefined || $("input[name=product-description]").val() == "") {
-         ev.preventDefault();
-         $(".error-message").html("Please enter a product description.");
-      };
-   });
-})
+function getExtension(e){var t=e.split(".");return t[t.length-1]}function isImage(e){switch(getExtension(e).toLowerCase()){case"jpg":case"gif":case"bmp":case"png":case"jpeg":return!0}return!1}$(document).ready(function(){$(".delete-product").on("mousedown",function(e){getRoute(e)}),$(".cta-button").on("mousedown",function(e){void 0==$("input[name=product-name]").val()||""==$("input[name=product-name]").val()?(e.preventDefault(),$(".error-message").html("Please enter a product name.")):void 0==$("textarea").val()||""==$("textarea").val()?(e.preventDefault(),$(".error-message").html("Please enter a product description.")):isImage($("input[name=image]").val())?getRoute(e):(e.preventDefault(),$(".error-message").html("Please choose a valid image file."))})});

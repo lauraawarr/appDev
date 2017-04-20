@@ -6,6 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="manifest.json">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
+
         <title>Admin Home</title>
         <link rel="stylesheet" href="./css/tachyons.css">
         <link rel="stylesheet" href="./css/style.css">
@@ -31,15 +39,28 @@
 
         @else
             @foreach ( $quizzes as $q )
-            <div class="bg-white mt5 pv5 ph5">
+            <div id="Quiz-{{ $q -> id }}" class="bg-white mt5 pv5 ph5">
              <h3 class="mv0">{{ $q -> name }}</h3>
              <p>{{ $q -> description }}</p>
-             <div class="mt5 mb2">
+             <div class="mt5">
+                <span id="removeQuiz-{{ $q -> id }}" class="removeQuiz dim bg-moon-gray br1 pv3 ph5 f6 link white pointer delete">Delete</span>
                 <a href="admin-step1/{{ $q -> id }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
                 <a href="quiz/{{ $q -> id }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Preview</a>
              </div>
             </div>
            @endforeach
         @endif
+         <div class="fixed absolute-center bg-white ba b--light-gray ph4 pt4 pb5 z-5 br1 dn" id="confirm-delete-box">
+            <h3 class="mb5">Are you sure you want to delete this quiz?</h3>
+            <span class="pointer dim bg-moon-gray br1 pv3 ph5 f6 link white" id="cancel-button">Cancel</span>
+            <span class="submit-delete pointer dim bg-blue br1 pv3 ph5 f6 link white" id="removeQuiz">Delete</span>
+         </div>
+         <div class="w-100 vh-100 bg-black-70 fixed absolute-center dn" id="confirm-overlay"></div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
+    </script>
+    <script src="./js/home.js"></script>
+    <script type="text/javascript" src="./js/admin.js"></script>
 </html>

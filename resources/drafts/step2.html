@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+   <title>
+    Create Quiz
+   </title>
+   <meta name="author" content="">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="./css/tachyons.css">
+   <link rel="stylesheet" href="./css/style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="./js/step2.js"></script>
+</head>
+<body class="avenir-next pa4 bg-washed-blue fw3 f5">
+   <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
+      <a href="quiz-home.html" class="link dim dark-gray mr4 pb2">Quizzes</a>
+      <a href="step1.html" class="link dim blue mr4 pb2 bb bw1 b--blue">Create quiz</a>
+   </nav>
+   <div class="bg-white mt5 ph3 pv5">
+      <div class="flex justify-center items-center w-100 light-silver">
+       <div class="bar bg-light-gray z-1 absolute"></div>
+       <div class="flex flex-column ph3 z-2">
+          <a href="step1.html" class="link dim pointer mv3 blue f6 tc">Setup</a>
+          <div class="flex flex-row align-items justify-center">
+            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+              <div class="active-circle bg-white br-100 relative" id="circle-1">
+                 <a href="step1.html" class="link f7 pa2 light-silver absolute absolute-center tc">1</a>
+              </div>
+           </div>
+          </div>
+       </div>
+       <div class="flex flex-column ph3 z-3">
+          <a href="step2.html" class="link dim pointer mv3 blue f6 tc">Products</a>
+          <div class="flex flex-row align-items justify-center">
+            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+              <div class="active-circle bg-blue br-100 relative" id="circle-1">
+                 <a href="step2.html" class="link f7 pa2 near-white absolute light-silver absolute-center tc">2</a>
+              </div>
+           </div>
+          </div>
+       </div>
+       <div class="flex flex-column ph3 z-3">
+          <a href="step3.html" class="link dim pointer mv3 light-silver f6 tc">Traits</a>
+          <div class="flex flex-row align-items justify-center">
+            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+              <div class="br-100 relative" id="circle-1">
+                 <a href="step3.html" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
+              </div>
+           </div>
+          </div>
+       </div>
+       <div class="flex flex-column ph3 z-3">
+          <a href="step4.html" class="link dim pointer mv3 light-silver f6 tc">Ranking</a>
+          <div class="flex flex-row align-items justify-center">
+            <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
+              <div class="br-100 relative" id="circle-1">
+                 <a href="step4.html" class="link f7 pa2 absolute light-silver absolute-center tc">4</a>
+              </div>
+           </div>
+          </div>
+       </div>
+    </div>
+      <h1 class="w-100 w-50-ns mt5 mb0 center tc">Add your products</h1>
+      <div class="tc mt4 blue f6 error-message">
+
+      </div>
+      <form action="" method="post">
+         <div class="w-100 w-50-ns mt4 center" id="question-1">
+            <h3 class="f5 mt0">Product name</h3>
+            <div class="mb4">
+               <input type="text" name="product-name" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
+            </div>
+            <h3 class="f5 mt0">Description</h3>
+            <div class="mb4">
+               <textarea name="textarea" name="product-description" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"></textarea>
+            </div>
+            <h3 class="f5 mt0">Image</h3>
+            <div class="pb4 bb bw1 b--light-gray">
+              <input id="file-upload" type="file" class="o-0 overflow-hidden z--1 absolute" />
+              <label for="file-upload" class="custom-file-upload dib dim b--blue bg-blue f6 white tc pv2 w-100 br1 pointer">Choose file</label>
+              <input type="submit" value="Add product" class="dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
+
+            </div>
+         </div>
+      </form>
+      <div class="mt5 tc">
+         <a href="step1.html" class="dim bg-silver  br1 pv3 ph4 ph5-ns f6 link white">Back</a>
+         <a href="step3.html" class="dim bg-blue br1 pv3 ph4 ph5-ns f6 link white cta-button">Next</a>
+      </div>
+      <div class="mt5 w-100 w-50-ns center flex flex-wrap justify-center br1">
+         <!-- Add bg-washed-yellow to product being edited -->
+         <div class="w-100 w-46-m w-30-l pa4 bw1 b--solid bg-washed-yellow b--light-gray tc relative product mb3 mh1">
+            <div class="link blue absolute top-1p right-1 delete-product pointer">x</div>
+            <div class="h4">
+               <img src="https://assets.pcmag.com/media/images/409668-lenovo-ideapad-yoga-2-pro.jpg?thumb=y&width=333&height=245" class="max-h4 mt2"/>
+            </div>
+            <p class="f6">
+               Lenovo Yoga Pro 2
+            </p>
+            <a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a>
+         </div>
+         <div class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
+            <div class="link blue absolute top-1p right-1 delete-product pointer">x</div>
+            <div class="h4">
+               <img src="http://image.shutterstock.com/z/stock-photo-beagle-dog-in-front-of-a-white-background-76764031.jpg" class="max-h4 mt2"/>
+            </div>
+            <p class="f6">
+               Lenovo Yoga Pro 2
+            </p>
+            <a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a>
+         </div>
+         <div class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
+            <div class="link blue absolute top-1p right-1 delete-product pointer">x</div>
+            <div class="h4">
+               <img src="https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg" class="max-h4 mt2"/>
+            </div>
+            <p class="f6">
+               Lenovo Yoga Pro 2
+            </p>
+            <a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

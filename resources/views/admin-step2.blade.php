@@ -6,6 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="../manifest.json">
+        <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
+
         <title>Step 2</title>
 
         <link rel="stylesheet" href="../css/tachyons.css">
@@ -61,21 +69,22 @@
          </div>
       </div>
       <h1 class="w-100 w-50-ns mt5 mb0 center tc">Add your products</h1>
+        <div class="tc mt4 blue f6 error-message"></div>
           <form id="product-upload" enctype="multipart/form-data">
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Product name</h3>
                 <div class="mb4">
-                   <input id="submitProduct-Name" type="text" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
+                   <input id="submitProduct-Name" type="text" name="product-name" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                 </div>
                 <h3 class="f5">Description</h3>
                 <div class="mb4">
-                   <textarea id="submitProduct-Description" name="textarea" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"></textarea>
+                   <textarea id="submitProduct-Description" name="description" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"></textarea>
                 </div>
                 <h3 class="f5">Image <i><span id='image-name'></span></i></h3>
                 <div class="mb4 pb4 bb bw1 b--light-gray">
-                  <input id="file-upload" type="file" name="image" onchange="previewFile()" class="o-0 overflow-hidden z--1 absolute"/>
+                  <input id="file-upload" type="file" accept=".jpg,.jpeg,.png,.gif,.bmp" name="image" onchange="previewFile()" class="o-0 overflow-hidden z--1 absolute"/>
                   <label for="file-upload" class="custom-file-upload dib dim b--blue bg-blue f6 white tc pv2 w-100 br1 pointer">Choose file</label>
-                  <input id="submitProduct" type="button" value="Add product" class="submit dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
+                  <input id="submitProduct" type="button" value="Add product" class="submit cta-button dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
 
                 </div>
              </div>
@@ -92,11 +101,12 @@
             @foreach ( $products as $p )
               <div id="Product-{{ $p -> id }}" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
                 <div id="removeProduct-{{ $p -> id }}" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div>
-                <img src="../uploads/{{ $p -> img }}" width="333" class="w-90 mt2"/>
+                <div class="h4">
+                  <img src="../uploads/{{ $p -> img }}" class="max-h4 mt2"/>
+                </div>
                 <p class="f6">
                    {{ $p -> name }}
                 </p>
-                <a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a>
              </div>
             @endforeach
           </div>
@@ -108,6 +118,7 @@
           var quizId = "{{ $quizId }}";
           console.log( quizId );
         </script>
-        <script type="text/javascript" src="../js/admin.js"></script>
+        <script src="../js/step2.js"></script>
+        <script src="../js/admin.js"></script>
     </body>
 </html>

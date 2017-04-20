@@ -1,11 +1,11 @@
 <?php
 
-if ( isset($quiz[0] -> id) ){ 
-  $description = $quiz[0] -> description ;
-  $name = $quiz[0] -> name ;
+if ( isset($quiz -> id) ){
+  $description = $quiz -> description;
+  $name = $quiz -> name;
   $url = "updateQuiz";
   $cta = "Save";
-} elseif ( $quizId == 0){
+} else if ( $quizId == 0){
   $url = "newQuiz";
   $description = $name = null;
   $cta = "Next";
@@ -19,6 +19,14 @@ if ( isset($quiz[0] -> id) ){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="../manifest.json">
+        <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
 
         <title>Step 1</title>
 
@@ -38,7 +46,7 @@ if ( isset($quiz[0] -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="active-circle bg-blue br-100 relative" id="circle-1">
-                    <a href="../admin-step1/{{ $quizId }}" class="link f7 pa2 near-white absolute absolute-center tc">1</a>
+                    <a href="@if (isset($quiz -> id))../admin-step1/{{ $quizId }}@endif" class="link f7 pa2 near-white absolute absolute-center tc">1</a>
                  </div>
               </div>
              </div>
@@ -48,7 +56,7 @@ if ( isset($quiz[0] -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="bg-light-gray br-100 relative" id="circle-1">
-                    <a href="../admin-step2/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
+                    <a href="@if (isset($quiz -> id))../admin-step2/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
                  </div>
               </div>
              </div>
@@ -58,7 +66,7 @@ if ( isset($quiz[0] -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="br-100 relative" id="circle-1">
-                    <a href="../admin-step3/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
+                    <a href="@if (isset($quiz -> id))../admin-step3/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
                  </div>
               </div>
              </div>
@@ -68,37 +76,39 @@ if ( isset($quiz[0] -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="br-100 relative" id="circle-1">
-                    <a href="../admin-step4/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">4</a>
+                    <a href="@if (isset($quiz -> id))../admin-step4/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">4</a>
                  </div>
               </div>
              </div>
           </div>
        </div>
-      <h1 class="w-100 w-50-ns mt5 mb0 center tc">Set up your quiz</h1>
+     <h1 class="w-100 w-50-ns mt5 mb0 center tc">Set up your quiz</h1>
+      <div class="tc mt4 blue f6 error-message"></div>
           <form action="admin-stage2" method="post">
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Quiz name</h3>
                 <div class="mb4">
-                   <input id="<? echo $url; ?>-Name" type="text" 
-                    value="<? echo $name; ?>" 
+                   <input id="<? echo $url; ?>-Name" type="text" name="quiz-name"
+                    value="<? echo $name; ?>"
                     class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                 </div>
                 <h3 class="f5">Description</h3>
                 <div class="mb4">
-                  <textarea id="<? echo $url; ?>-Description"  name="textarea" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"><? echo $description; ?></textarea>
+                  <textarea id="<? echo $url; ?>-Description"  name="description" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"><? echo $description; ?></textarea>
                 </div>
              </div>
           </form>
           <div class="mt5 mb2 tc">
              <a href="../admin" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a id="<? echo $url; ?>" class="submit dim bg-blue br1 pv3 ph5 f6 link white"><? echo $cta; ?></a>
+             <a id="<? echo $url; ?>" class="submit dim bg-blue br1 pv3 ph5 f6 link white cta-button"><? echo $cta; ?></a>
           </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
-          var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
+          var quizId = "@if ( isset($quiz -> id) ){{ $quiz -> id }} @endif";
         </script>
+        <script src="../js/step1.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>
