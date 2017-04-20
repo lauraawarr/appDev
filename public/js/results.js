@@ -18,7 +18,6 @@ $(document).ready(function() {
     retrieved_object[quizId] = array;
     localStorage.setItem('quiz', JSON.stringify(retrieved_object));
   }
-
   // add event handlers to the buttons for each product
   $('#btn1').click(function() {
     addObj(result[0]);
