@@ -4,7 +4,7 @@ $(document).ready(function() {
 
       $("#confirm-delete-box, #confirm-overlay").removeClass("dn");
 
-      $("#delete-button").on("click", function() {
+      $("#removeQuiz").on("click", function() {
          console.log("clicked delete");
          quiz.remove();
          $("#confirm-delete-box, #confirm-overlay").addClass("dn");

@@ -62,12 +62,17 @@
        </div>
       <h1 class="w-100 w-50-ns mt5 mb0 center tc">Add traits to your products</h1>
 
+      <p class="silver tc w-50 center">A trait is a characteristic of your product that is of interest to your users.
+        <br />Ex. Laptops could have the traits: screen size, RAM, operating system.</p>
+      <p class="silver tc w-50 center">Keep in mind, users will be asked how important each trait is to them.</p>
+      <div class="tc mt4 blue f6 error-message"></div>
+
           <form>
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Trait</h3>
                 <div class="mb4 pb4 bb bw1 b--light-gray">
                    <input id="submitTrait-Trait" type="text" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
-                   <input id="submitTrait" type="button" value="Add" class="submit dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
+                   <input id="submitTrait" type="button" value="Add" class="submit cta-button dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
                 </div>
              </div>
           </form>
@@ -77,7 +82,6 @@
             <div id="Trait-{{ $t -> id }}" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between">
                <span>{{ ucfirst($t -> trait) }}</span>
                <span>
-                  <a href="" class="ttu f7 mr2 link blue">Edit</a>
                   <a id="removeTrait-{{ $t -> id }}" href="" class="submit link blue ml1">x</a>
                </span>
             </div>
@@ -96,6 +100,7 @@
           var quizId = "{{ $quizId }}";
           console.log( quizId );
         </script>
+        <script src="../js/step3.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

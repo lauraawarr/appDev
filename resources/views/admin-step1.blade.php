@@ -74,24 +74,25 @@ if ( isset($quiz[0] -> id) ){
              </div>
           </div>
        </div>
-      <h1 class="w-100 w-50-ns mt5 mb0 center tc">Set up your quiz</h1>
+     <h1 class="w-100 w-50-ns mt5 mb0 center tc">Set up your quiz</h1>
+      <div class="tc mt4 blue f6 error-message"></div>
           <form action="admin-stage2" method="post">
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Quiz name</h3>
                 <div class="mb4">
-                   <input id="<? echo $url; ?>-Name" type="text" 
+                   <input id="<? echo $url; ?>-Name" type="text" name="quiz-name"
                     value="<? echo $name; ?>" 
                     class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                 </div>
                 <h3 class="f5">Description</h3>
                 <div class="mb4">
-                  <textarea id="<? echo $url; ?>-Description"  name="textarea" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"><? echo $description; ?></textarea>
+                  <textarea id="<? echo $url; ?>-Description"  name="description" rows="10" cols="50" class="ba bw1 b--light-silver h3 w-100 br1 pointer"><? echo $description; ?></textarea>
                 </div>
              </div>
           </form>
           <div class="mt5 mb2 tc">
              <a href="../admin" class="dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a id="<? echo $url; ?>" class="submit dim bg-blue br1 pv3 ph5 f6 link white"><? echo $cta; ?></a>
+             <a id="<? echo $url; ?>" class="submit dim bg-blue br1 pv3 ph5 f6 link white cta-button"><? echo $cta; ?></a>
           </div>
         </div>
 
@@ -99,6 +100,7 @@ if ( isset($quiz[0] -> id) ){
         <script>
           var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
         </script>
+        <script src="../js/step1.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

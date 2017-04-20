@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserController@getIndex');
 
 Route::get('/admin', 'UserController@getQuizzes');
 
@@ -29,7 +27,9 @@ Route::get('/admin-step3/{quizId}', 'UserController@getStep3');
 
 Route::get('/admin-step4/{quizId}', 'UserController@getStep4');
 
-Route::get('/admin-step5/{quizId}', 'UserController@getStep5');
+Route::get('/admin-step5/{quizId}', function ( $quizId ) {
+    return view('admin-step5', ['quizId' => $quizId]);
+});
 
 Route::get('/compare/{quizId}', function ( $quizId ) {
     return view('compare', ['quizId' => $quizId]);

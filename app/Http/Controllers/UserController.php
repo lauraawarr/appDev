@@ -12,6 +12,13 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+    public function getIndex()
+    {
+        $quizzes = DB::table('quizzes')->get();
+
+        return view('welcome', ['quizzes' => $quizzes]);
+    }
+
     public function getOverview( $quizId, $userArray )
     {
         $traits = DB::table($quizId.'_traits')->orderBy('id')->get();
@@ -57,11 +64,6 @@ class UserController extends Controller
         }; 
 
     	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId, 'selections' => $selections]);
-    }
-
-    public function getStep5(  $quizId )
-    {
-        return view('admin-step5', ['quizId' => $quizId]);
     }
 
     public function getTraits()
@@ -153,9 +155,8 @@ class UserController extends Controller
         $removeId = $request->removeId;
 
         $deletedRows = DB::table($quizId.'_inventory')->where('id', '=', $removeId )->delete();
-        $prodId = DB::getPdo()->lastInsertId();
 
-        return response()->json(['result'=> $deletedRows, 'prodId' => $prodId ]);
+        return response()->json(['result'=> $deletedRows ]);
     }
 
     public function removeQuiz(Request $request)
@@ -163,9 +164,10 @@ class UserController extends Controller
         $removeId = $request->removeQuizId;
 
         $deletedRows = DB::table('quizzes')->where('id', '=', $removeId )->delete();
-        $removeQuizId = DB::getPdo()->lastInsertId();
+        DB::table($removeId.'_inventory')->truncate();
+        DB::table($removeId.'_traits')->truncate();
 
-        return response()->json(['result'=> $deletedRows, 'removeQuizId' => $removeQuizId ]);
+        return response()->json(['result'=> $deletedRows, 'removeQuizId' => $removeId ]);
     }
 
     public function removeTrait(Request $request)
