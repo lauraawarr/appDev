@@ -6,6 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/public/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/public/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/public/manifest.json">
+        <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
+
         <title>Step 4</title>
 
         <link rel="stylesheet" href="../css/tachyons.css">
@@ -96,8 +104,8 @@
 
                               @for ($i = 1; $i <= 5; $i++ )
                                 <div class="mb3 flex flex-column ph2">
-                                  <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" value="{{ $i }}" 
-                                  <? if ($selections['p'.( $p + 1 ).'_'.( $t + 1 )] == $i) echo 'checked' ?> 
+                                  <input type="radio" name="p{{ $p + 1 }}_{{ $t + 1 }}" value="{{ $i }}"
+                                  <? if ($selections['p'.( $p + 1 ).'_'.( $t + 1 )] == $i) echo 'checked' ?>
                                   class=" mb2 pointer q1 justify-center center" id="p{{ $p + 1 }}_{{ $t + 1 }}_{{ $i }}" />
                                   <label for="p{{ $p + 1 }}_{{ $t + 1 }}_{{ $i }}" class=" pointer ">{{ $i }}</label>
                                </div>

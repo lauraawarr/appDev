@@ -1,6 +1,6 @@
 <?php
 
-if ( isset($quiz -> id) ){ 
+if ( isset($quiz -> id) ){
   $description = $quiz -> description;
   $name = $quiz -> name;
   $url = "updateQuiz";
@@ -19,6 +19,14 @@ if ( isset($quiz -> id) ){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/public/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/public/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/public/manifest.json">
+        <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
 
         <title>Step 1</title>
 
@@ -81,7 +89,7 @@ if ( isset($quiz -> id) ){
                 <h3 class="f5">Quiz name</h3>
                 <div class="mb4">
                    <input id="<? echo $url; ?>-Name" type="text" name="quiz-name"
-                    value="<? echo $name; ?>" 
+                    value="<? echo $name; ?>"
                     class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                 </div>
                 <h3 class="f5">Description</h3>
