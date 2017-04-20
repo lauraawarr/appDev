@@ -33,27 +33,34 @@
             </div>
             <h4 class="tc dark-gray f3 mb0">Similar Results</h4>
             <div class="other-products dt-ns dt--fixed-ns mt0">
-              <div class="dib-m dtc-ns tc pv4">
-                <h3 class="silver f4 b">{{$result[1] -> name}}</h3>
-                <div><img src="../../uploads/{{ $result[1] -> img}}" class="bg-light-gray w6 mb3"></div>
-                <p class="mt0 f6 blue b view-description-1 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
-                <p class="dn dn-0 ph5">{{$result[1] -> description}}</p>
-                <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn2">Save</button>
-              </div>
-              <div class="dib-m dtc-ns tc pv4">
-                <h3 class="silver f4 b">{{$result[2] -> name}}</h3>
-                <div><img src="../../uploads/{{ $result[2] -> img}}" class="bg-light-gray w6 mb3"></div>
-                <p class="mt0 f6 blue b view-description-2 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
-                <p class="dn dn-1">{{$result[2] -> description}}</p>
-                <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn3">Save</button>
-              </div>
-              <div class="dib-m dtc-ns tc pv4">
-                <h3 class="silver f4 b">{{$result[3] -> name}}</h3>
-                <div><img src="../../uploads/{{ $result[3] -> img}}" class="bg-light-gray w6 mb3"></div>
-                <p class="mt0 f6 blue b view-description-3 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
-                <p class="dn dn-2">{{$result[3] -> description}}</p>
-                <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn4">Save</button>
-              </div>
+
+              @if (isset($result[1]))
+                <div class="dib-m dtc-ns tc pv4">
+                  <h3 class="silver f4 b">{{$result[1] -> name}}</h3>
+                  <div><img src="../../uploads/{{ $result[1] -> img}}" class="bg-light-gray w6 mb3"></div>
+                  <p class="mt0 f6 blue b view-description-1 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
+                  <p class="dn dn-0 ph5">{{$result[1] -> description}}</p>
+                  <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn2">Save</button>
+                </div>
+               @if (isset($result[2]))
+                <div class="dib-m dtc-ns tc pv4">
+                  <h3 class="silver f4 b">{{$result[2] -> name}}</h3>
+                  <div><img src="../../uploads/{{ $result[2] -> img}}" class="bg-light-gray w6 mb3"></div>
+                  <p class="mt0 f6 blue b view-description-2 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
+                  <p class="dn dn-1">{{$result[2] -> description}}</p>
+                  <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn3">Save</button>
+                </div>
+               @if (isset($result[3]))
+                <div class="dib-m dtc-ns tc pv4">
+                  <h3 class="silver f4 b">{{$result[3] -> name}}</h3>
+                  <div><img src="../../uploads/{{ $result[3] -> img}}" class="bg-light-gray w6 mb3"></div>
+                  <p class="mt0 f6 blue b view-description-3 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
+                  <p class="dn dn-2">{{$result[3] -> description}}</p>
+                  <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn4">Save</button>
+                </div>
+              @endif
+              @endif
+              @endif
             </div>
         </div>
         <div class="tl mt4">

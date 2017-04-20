@@ -208,7 +208,9 @@ class UserController extends Controller
     	$description = $request->description;
     	$img = $request->image;
 
-    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img, 'rankings' => 0]);
+        $traitCount = DB::table($quizId.'_traits')->count();
+
+    	$result = DB::table($quizId.'_inventory')->insert([ 'id'=> null, 'name' => $name, 'description' => $description, 'img' => $img, 'rankings' => str_repeat("0,", $traitCount)]);
         $prodId = DB::getPdo()->lastInsertId();
 
     	return response()->json(['result'=> $result, 'name'=> $name, 'description'=> $description, 'img'=> $img, 'prodId' => $prodId ]);
@@ -223,7 +225,8 @@ class UserController extends Controller
         for ( $p = 1; $p <= count( $prods ); $p++ ){
             $rankings = "";
             for ( $t = 1; $t <= count( $traits ); $t++ ){
-                $rankings = $rankings.$request["p".$p."_".$t].",";
+                (isset($request["p".$p."_".$t])) ? $j = $request["p".$p."_".$t] : $j = 0;
+                $rankings = $rankings . $j . ",";
             };
             $r = DB::table($quizId.'_inventory')->where('id', '=', $prods[$p - 1]->id )->update(['rankings' => $rankings]);
             array_push($result, $r);
