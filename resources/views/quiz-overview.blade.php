@@ -7,11 +7,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="/public/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="/public/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="/public/manifest.json">
-        <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#4183f3">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="../../manifest.json">
+        <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#4183f3">
         <meta name="theme-color" content="#4183f3">
 
         <title>Review Your Answers</title>
@@ -22,8 +22,7 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start relative">
-          <a href="" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
-          <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
+          <a href="../../index.php" class="link dark-gray mr4 pb2 bb bw1 b--blue">Home</a>
        </nav>
        <div class="bg-white mt5 pv5">
           <h1 class="mt0 tc">Review Your Answers</h1>
