@@ -11,10 +11,29 @@
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.15",
     "jquery": "^3.1.1",
     "laravel-mix": "^0.8.3",
     "lodash": "^4.17.4",
     "tachyons": "^4.7.0",
     "vue": "^2.1.10"
-  }
+  },
+  "name": "appdev",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauraawarr/appDev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauraawarr/appDev/issues"
+  },
+  "homepage": "https://github.com/lauraawarr/appDev#readme",
+  "description": ""
 }

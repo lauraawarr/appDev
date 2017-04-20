@@ -1,15 +1,1 @@
-$(document).ready(function() {
-
-   $(".cta-button").on("mousedown", function(ev) {
-      if ($("input[name=trait-name]").val() == undefined || $("input[name=trait-name]").val() == "") {
-         ev.preventDefault();
-         $(".error-message").html("Please enter a trait name.");
-   	  } else {
-   	  	getRoute( ev );
-   	  };
-   });
-
-   $(".remove-trait").on("mousedown", function(ev){
-   		getRoute(ev);
-   });
-});
+$(document).ready(function(){$(".cta-button").on("mousedown",function(e){void 0==$("input[name=trait-name]").val()||""==$("input[name=trait-name]").val()?(e.preventDefault(),$(".error-message").html("Please enter a trait name.")):getRoute(e)}),$(".remove-trait").on("mousedown",function(e){getRoute(e)})});
