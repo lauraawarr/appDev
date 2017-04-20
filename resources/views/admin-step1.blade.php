@@ -1,11 +1,11 @@
 <?php
 
-if ( isset($quiz[0] -> id) ){ 
-  $description = $quiz[0] -> description ;
-  $name = $quiz[0] -> name ;
+if ( isset($quiz -> id) ){ 
+  $description = $quiz -> description;
+  $name = $quiz -> name;
   $url = "updateQuiz";
   $cta = "Save";
-} elseif ( $quizId == 0){
+} else if ( $quizId == 0){
   $url = "newQuiz";
   $description = $name = null;
   $cta = "Next";
@@ -98,7 +98,10 @@ if ( isset($quiz[0] -> id) ){
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
-          var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
+          var quizId = "@if ( isset($quiz -> id) ){{ $quiz -> id }} @endif";
+        </script>
+        <script>
+          var url = <? echo $url; ?>;
         </script>
         <script src="../js/step1.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>

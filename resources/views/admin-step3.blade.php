@@ -71,7 +71,7 @@
              <div class="w-50 mt5 center" id="question-1">
                 <h3 class="f5">Trait</h3>
                 <div class="mb4 pb4 bb bw1 b--light-gray">
-                   <input id="submitTrait-Trait" type="text" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
+                   <input id="submitTrait-Trait" type="text" name="trait-name" class="ba bw1 b--light-silver h2 pv3 w-100 br1 pointer" />
                    <input id="submitTrait" type="button" value="Add" class="submit cta-button dim ba bw1 b--blue bg-blue f6 white pv3 ph0 w-100 br1 mt4 pointer">
                 </div>
              </div>

@@ -111,8 +111,8 @@
             @endfor
           </form>
           <div class="mt5 mb2 tc cf">
-             <a id="submitRanks-Back"href="../admin-step3/{{ $quizId }}" class="submit dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
-             <a id="submitRanks-Next" href="../admin-step5/{{ $quizId }}" class="submit dim bg-blue br1 pv3 ph5 f6 link white">Save</a>
+             <a id="submitRanks-Back"href="../admin-step3/{{ $quizId }}" class="cta-button dim bg-silver  br1 pv3 ph5 f6 link white">Back</a>
+             <a id="submitRanks-Next" href="../admin-step5/{{ $quizId }}" class="cta-button dim bg-blue br1 pv3 ph5 f6 link white">Save</a>
           </div>
        </div>
 
@@ -121,6 +121,7 @@
           var quizId = "{{ $quizId }}";
           console.log( quizId );
         </script>
+        <script src="../js/step4.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>
     </body>
 </html>

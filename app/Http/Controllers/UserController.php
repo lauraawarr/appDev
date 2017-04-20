@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function getStep1( $quizId )
     {
-        $quiz = DB::table('quizzes')->select('*')->where('id', '=', $quizId )->get();
+        $quiz = DB::table('quizzes')->where('id', '=', $quizId )->first();
 
         return view('admin-step1', ['quiz' => $quiz, 'quizId' => $quizId ]);
     }

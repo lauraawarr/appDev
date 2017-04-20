@@ -11,7 +11,7 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
       <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-        <a href="../quiz-home.html" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
+        <a href="../index.php" class="link dark-gray mr4 pb2 bb bw1 b--blue">Home</a>
       </nav>
       <div class="bg-white pv5 mt5">
         <h2 class="tc f2 mb0 mt0 dark-gray">Compare Results</h2>

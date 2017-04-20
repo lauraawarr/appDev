@@ -17,10 +17,6 @@ Route::get('/admin', 'UserController@getQuizzes');
 
 Route::get('/admin-step1/{quizId}', 'UserController@getStep1');
 
-Route::get('/admin-step2/{quizId}', function () {
-    return view('admin-step2');
-});
-
 Route::get('/admin-step2/{quizId}', 'UserController@getStep2');
 
 Route::get('/admin-step3/{quizId}', 'UserController@getStep3');
@@ -62,3 +58,14 @@ Route::post('/submitTrait/{quizId}', 'UserController@SubmitTrait');
 Route::post('/updateQuiz/{quizId}', 'UserController@updateQuiz');
 
 Route::post('/uploadImage', 'UserController@uploadImage');
+
+// Redirect to admin if no params
+Route::get('/admin-step1', 'UserController@getQuizzes');
+Route::get('/admin-step2', 'UserController@getQuizzes');
+Route::get('/admin-step3', 'UserController@getQuizzes');
+Route::get('/admin-step4', 'UserController@getQuizzes');
+Route::get('/admin-step5', 'UserController@getQuizzes');
+
+// Redirect to landing if no params
+Route::get('/results', 'UserController@getIndex');
+Route::get('/compare', 'UserController@getIndex');

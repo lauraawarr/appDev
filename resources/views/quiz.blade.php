@@ -12,8 +12,7 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-          <a href="" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
-          <a href="" class="link dark-gray mr4 pb2">Create quiz</a>
+          <a href="../index.php" class="link dark-gray mr4 pb2 bb bw1 b--blue">Home</a>
        </nav>
        <div class="bg-white mt4 pv5">
 

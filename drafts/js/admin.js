@@ -9,8 +9,8 @@ $('.removeQuiz').on('mousedown', function(ev){
 	removeQuizId = ev.target.id.replace('removeQuiz-', '');
 });
 
-function getRoute( ev , hash ){
-	if (!(ev == null)) var hash = ev.target.id;
+function getRoute( ev ){
+	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
 	var name = ($('#' + hash + '-Name').val() || null );
 	var description = ($('#' + hash + '-Description').val() || null );
