@@ -91,6 +91,7 @@ class UserController extends Controller
 
     public function getResult($quizId, $userArray)
     {
+        $userString = $userArray;
     	$userArray = array_map('intval', str_split( $userArray , 1 ));
     	$topProdScores = [0,0,0,0];
     	$topProds = [null, null, null, null];
@@ -119,7 +120,7 @@ class UserController extends Controller
         	};
         // });
   
-    	return view('results', ['result' => $topProds, 'quizId' => $quizId ]); //top prods
+    	return view('results', ['result' => $topProds, 'quizId' => $quizId, 'userString' => $userString ]); 
     }
 
     public function newQuiz(Request $request)
