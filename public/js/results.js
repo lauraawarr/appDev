@@ -1,19 +1,24 @@
 $(document).ready(function() {
-  // create function that adds the obeject to the array
   var addObj = function(obj) {
-    var retrieved_array = JSON.parse(localStorage.getItem('array'));
-    for(var i = 0; i < retrieved_array.length; i++) {
-      if(obj.id === retrieved_array[i].id) {
+    var retrieved_object = JSON.parse(localStorage.getItem('quiz'));
+    if(retrieved_object[quizId]) {
+      var array = retrieved_object[quizId];
+    } else {
+      var array = [];
+    }
+    for(var i = 0; i < array.length; i++) {
+      if(obj.id === array[i].id) {
         console.log("id exists");
+        console.log(retrieved_object);
         return false;
       }
     }
-    // push into the array from localStorage
-    retrieved_array.push(obj);
-    // add the array back into localStorage
-    localStorage.setItem('array', JSON.stringify(retrieved_array));
-    // console.log(retrieved_array);
+    array.push(obj);
+    console.log(array);
+    retrieved_object[quizId] = array;
+    localStorage.setItem('quiz', JSON.stringify(retrieved_object));
   }
+
   // add event handlers to the buttons for each product
   $('#btn1').click(function() {
     addObj(result[0]);

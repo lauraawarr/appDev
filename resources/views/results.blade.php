@@ -20,7 +20,7 @@
             <div class="main-product tc mb6">
               <h3 class="silver f4 b">{{ $result[0] -> name}}</h3>
               <p>{{ $result[0] -> description}}</p>
-              <div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w5 mb4"></div>
+              <div><img src="../../uploads/{{ $result[0] -> img}}" class="bg-light-gray w5 mb4"></div>
               <!-- <p>{{ $result[0] -> img}}</p> -->
               <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn1">Save</button>
             </div>
@@ -29,7 +29,7 @@
               <div class="dib-m dtc-ns tc pv4">
                 <h3 class="silver f4 b">{{$result[1] -> name}}</h3>
                 <!-- <p>{{ $result[1] -> description}}</p> -->
-                <div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6 mb3"></div>
+                <div><img src="../../uploads/{{ $result[1] -> img}}" class="bg-light-gray w6 mb3"></div>
                 <p class="mt0 f6 blue b view-description-1 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
                 <p class="dn dn-0 ph5">{{$result[1] -> description}}</p>
                 <!-- <p>{{ $result[1] -> img}}</p> -->
@@ -38,7 +38,7 @@
               <div class="dib-m dtc-ns tc pv4">
                 <h3 class="silver f4 b">{{$result[2] -> name}}</h3>
                 <!-- <p>{{ $result[2] -> description}}</p> -->
-                <div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6 mb3"></div>
+                <div><img src="../../uploads/{{ $result[2] -> img}}" class="bg-light-gray w6 mb3"></div>
                 <p class="mt0 f6 blue b view-description-2 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
                 <p class="dn dn-1">{{$result[2] -> description}}</p>
                 <!-- <p>{{ $result[2] -> img}}</p> -->
@@ -47,10 +47,10 @@
               <div class="dib-m dtc-ns tc pv4">
                 <h3 class="silver f4 b">{{$result[3] -> name}}</h3>
                 <!-- <p>{{ $result[3] -> description}}</p> -->
-                <div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6 mb3"></div>
+                <div><img src="../../uploads/{{ $result[3] -> img}}" class="bg-light-gray w6 mb3"></div>
                 <p class="mt0 f6 blue b view-description-3 pointer"><img src="../../fonts/down.svg" class="pr2">DESCRIPTION</p>
                 <p class="dn dn-2">{{$result[3] -> description}}</p>
-                <!-- <p>{{ $result[3] -> img}}</p> -->
+                <!-- <img src='../../uploads{{ $result[3] -> img}}'> -->
                 <button class="pointer bg-blue bn white ph5 pv3 mb2 br2" id="btn4">Save</button>
               </div>
             </div>
@@ -66,11 +66,9 @@
         <script type="text/javascript">
            var result = <?php echo json_encode( $result ) ?>;
            var quizId = <?php echo json_encode( $quizId ) ?>;
-           console.log( quizId );
-           // create an array in the page and store it in localStorage
-           if(localStorage.getItem('array') === null) {
-             var stored_array = [];
-             localStorage.setItem('array', JSON.stringify(stored_array));
+           if(localStorage.getItem('quiz') === null) {
+             var quiz_object = {};
+             localStorage.setItem('quiz', JSON.stringify(quiz_object));
            }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
