@@ -31,6 +31,10 @@ Route::get('/admin-step4/{quizId}', 'UserController@getStep4');
 
 Route::get('/admin-step5/{quizId}', 'UserController@getStep5');
 
+Route::get('/compare/{quizId}', function ( $quizId ) {
+    return view('compare', ['quizId' => $quizId]);
+});
+
 Route::post('/newQuiz', 'UserController@newQuiz');
 
 Route::get('/questions', function () {
