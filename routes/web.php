@@ -39,6 +39,8 @@ Route::get('/questions', function () {
 
 Route::get('/quiz/{quizId}', 'UserController@getQuiz');
 
+Route::get('/quiz-overview/{quizId}/{userArray}', 'UserController@getOverview');
+
 Route::get('/results/{quizId}/{userArray}', 'UserController@getResult');
 
 Route::post('/removeQuiz', 'UserController@removeQuiz');

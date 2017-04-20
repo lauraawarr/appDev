@@ -12,6 +12,14 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+    public function getOverview( $quizId, $userArray )
+    {
+        $traits = DB::table($quizId.'_traits')->orderBy('id')->get();
+        $userArray = str_split($userArray, 1);
+
+        return view('quiz-overview', ['quizId' => $quizId, 'traits' => $traits, 'userArray' => $userArray]);
+    }
+
     public function getStep1( $quizId )
     {
         $quiz = DB::table('quizzes')->select('*')->where('id', '=', $quizId )->get();
@@ -111,7 +119,7 @@ class UserController extends Controller
         	};
         // });
   
-    	return view('results', ['result' => $products, 'quizId' => $quizId ]); //top prods
+    	return view('results', ['result' => $topProds, 'quizId' => $quizId ]); //top prods
     }
 
     public function newQuiz(Request $request)
