@@ -12,6 +12,13 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+    public function getIndex()
+    {
+        $quizzes = DB::table('quizzes')->get();
+
+        return view('welcome', ['quizzes' => $quizzes]);
+    }
+
     public function getOverview( $quizId, $userArray )
     {
         $traits = DB::table($quizId.'_traits')->orderBy('id')->get();
@@ -57,11 +64,6 @@ class UserController extends Controller
         }; 
 
     	return view('admin-step4', ['traits' => $traits, 'products' => $products, 'quizId' => $quizId, 'selections' => $selections]);
-    }
-
-    public function getStep5(  $quizId )
-    {
-        return view('admin-step5', ['quizId' => $quizId]);
     }
 
     public function getTraits()

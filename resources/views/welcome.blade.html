@@ -14,18 +14,14 @@
        <div class="bg-white tc pa5">
           <h1 class="mv0 center tc">Quizzes</h1>
           <div class="flex flex-column justify-center items-center">
-            
-            @foreach ($quizzes as $q)
              <div class="pb4 bb w-40-l w-100-s bw1 b--light-gray">
-                <h3 class="mt4 mb0">{{ $q -> name}}</h3>
-                <p class="mb0 light-silver">{{ $q -> description }}</h4>
+                <h3 class="mt4 mb0">What Laptop Should You Buy?</h3>
+                <p class="mb0 light-silver">Description here</h4>
                 <div class="mt4">
-                   <a href="quiz/{{ $q -> id }}" class="dim bg-blue db br1 pv3 mb3 ph5 f6 link white">Take Quiz</a>
-                   <a href="compare/{{ $q -> id }}" class="dim bg-blue db br1 pv3 ph5 f6 link white">Compare Results</a>
+                   <a href="" class="dim bg-blue db br1 pv3 mb3 ph5 f6 link white">Retake</a>
+                   <a href="" class="dim bg-blue db br1 pv3 ph5 f6 link white">Results</a>
                 </div>
              </div>
-             @endforeach
-
           </div>
        </div>
     </body>
