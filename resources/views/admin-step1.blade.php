@@ -38,7 +38,7 @@ if ( isset($quiz -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="active-circle bg-blue br-100 relative" id="circle-1">
-                    <a href="../admin-step1/{{ $quizId }}" class="link f7 pa2 near-white absolute absolute-center tc">1</a>
+                    <a href="@if (isset($quiz -> id))../admin-step1/{{ $quizId }}@endif" class="link f7 pa2 near-white absolute absolute-center tc">1</a>
                  </div>
               </div>
              </div>
@@ -48,7 +48,7 @@ if ( isset($quiz -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="bg-light-gray br-100 relative" id="circle-1">
-                    <a href="../admin-step2/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
+                    <a href="@if (isset($quiz -> id))../admin-step2/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">2</a>
                  </div>
               </div>
              </div>
@@ -58,7 +58,7 @@ if ( isset($quiz -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="br-100 relative" id="circle-1">
-                    <a href="../admin-step3/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
+                    <a href="@if (isset($quiz -> id))../admin-step3/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">3</a>
                  </div>
               </div>
              </div>
@@ -68,7 +68,7 @@ if ( isset($quiz -> id) ){
              <div class="flex flex-row align-items justify-center">
                <div class="w2 h2 br-100 bg-light-gray flex justify-center items-center">
                  <div class="br-100 relative" id="circle-1">
-                    <a href="../admin-step4/{{ $quizId }}" class="link f7 pa2 absolute light-silver absolute-center tc">4</a>
+                    <a href="@if (isset($quiz -> id))../admin-step4/{{ $quizId }}@endif" class="link f7 pa2 absolute light-silver absolute-center tc">4</a>
                  </div>
               </div>
              </div>
@@ -99,9 +99,6 @@ if ( isset($quiz -> id) ){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
           var quizId = "@if ( isset($quiz -> id) ){{ $quiz -> id }} @endif";
-        </script>
-        <script>
-          var url = <? echo $url; ?>;
         </script>
         <script src="../js/step1.js"></script>
         <script type="text/javascript" src="../js/admin.js"></script>

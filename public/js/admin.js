@@ -9,8 +9,8 @@ $('.removeQuiz').on('mousedown', function(ev){
 	removeQuizId = ev.target.id.replace('removeQuiz-', '');
 });
 
-function getRoute( ev , hash ){
-	if (!(ev == null)) var hash = ev.target.id;
+function getRoute( ev ){
+	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
 	var name = ($('#' + hash + '-Name').val() || null );
 	var description = ($('#' + hash + '-Description').val() || null );
@@ -24,6 +24,8 @@ function getRoute( ev , hash ){
 		removeQuizId: removeQuizId
 	};
 
+	console.log(data);
+
 	if (hash == "submitProduct"){
 		ajaxData = data;
 		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
@@ -32,7 +34,7 @@ function getRoute( ev , hash ){
 		sendData( '../submitRanks/' + quizId, new FormData($('#ranking')[0]), false, false);
 
 	} else if (hash.includes("removeQuiz")){
-		sendData( hash, data); 
+		sendData( "removeQuiz", data); 
 		$( '#Quiz-' + removeQuizId).hide('slow');
 
 	} else if (hash.includes("removeProduct") || hash.includes("removeTrait")){

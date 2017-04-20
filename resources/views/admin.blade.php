@@ -45,7 +45,7 @@
          <div class="fixed absolute-center bg-white ba b--light-gray ph4 pt4 pb5 z-5 br1 dn" id="confirm-delete-box">
             <h3 class="mb5">Are you sure you want to delete this quiz?</h3>
             <span class="pointer dim bg-moon-gray br1 pv3 ph5 f6 link white" id="cancel-button">Cancel</span>
-            <span class="submit pointer dim bg-blue br1 pv3 ph5 f6 link white" id="removeQuiz">Delete</span>
+            <span class="submit-delete pointer dim bg-blue br1 pv3 ph5 f6 link white" id="removeQuiz">Delete</span>
          </div>
          <div class="w-100 vh-100 bg-black-70 fixed absolute-center dn" id="confirm-overlay"></div>
     </body>

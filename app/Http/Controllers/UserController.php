@@ -164,8 +164,8 @@ class UserController extends Controller
         $removeId = $request->removeQuizId;
 
         $deletedRows = DB::table('quizzes')->where('id', '=', $removeId )->delete();
-        DB::table($removeId.'_inventory')->truncate();
-        DB::table($removeId.'_traits')->truncate();
+        Schema::drop($removeId.'_inventory');
+        Schema::drop($removeId.'_traits');
 
         return response()->json(['result'=> $deletedRows, 'removeQuizId' => $removeId ]);
     }
