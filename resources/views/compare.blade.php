@@ -11,14 +11,13 @@
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
       <nav class="pb4 bb bw1 b--lightest-blue flex justify-start">
-        <a href="quiz-home.html" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
+        <a href="../quiz-home.html" class="link dark-gray mr4 pb2 bb bw1 b--blue">Quizzes</a>
       </nav>
       <div class="bg-white pv5 mt5">
         <h2 class="tc f2 mb0 mt0 dark-gray">Compare Results</h2>
         <div id="results" class="dt-ns dt--fixed-ns mt0 flex flex-wrap">
           <section class="cf"></section>
       </div>
-        <!-- {{ $quizId }} -->
         <script type="text/javascript">
           var quizId = <?php echo json_encode( $quizId ) ?>;
         </script>

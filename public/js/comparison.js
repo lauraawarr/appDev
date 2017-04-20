@@ -1,21 +1,22 @@
 $(document).ready(function() {
-  var compare_items = JSON.parse(localStorage.getItem('quiz'));
-  // console.log(quizId);
+  // get the stored object from localStorgae
+  // the object will include all the items saved from each quiz,
+  // with the quizId being the results identifier
+  var compare_items = getCompareFromLocalStorage();
   console.log(compare_items);
   if(compare_items.hasOwnProperty(quizId)) {
     var items = compare_items[quizId];
   }
   console.log(items);
-  // for each object the the compare_items array, add the name and image to the
-  // page.
 
-  /////** remember to add in images from database and remove link **/////
+  // loop through the array of objects in the results and
+  // add them to the compare page.
   $.each(items, function() {
     $('.cf').append('<div class="fl w-100 w-50-m w-25-l tc pv4">'+
         '<article class="br2 ba dark-gray b--black-10 bw2 mv1 w-100 mw10 center">'+
         '<div class="pa2 ph3-ns pb3-ns"><div class="dt w-100 mt1">'+
         '<div class="dtc tr"><a href="#" class="pointer no-underline" id="'+this.id+'""><h2 class="f4 mv0 blue nunito">x</h2></a></div>'+
-        '</div><img src="http://chibuzouguru.com/img/prod3.png" class="bg-light-gray w6 mt2">'+
+        '</div><img src="../uploads/'+this.img+'" class="bg-light-gray w6 mt2">'+
         '<h3 class="silver f4 b">'+this.name+'</h3></div>');
   });
 
@@ -24,11 +25,13 @@ $(document).ready(function() {
   $('a').click(function(e) {
     if ($(this).attr("id")) {
       var id = ($(this).attr('id'));
-      var remove_array = JSON.parse(localStorage.getItem('array'));
+      var retrieved_items = getCompareFromLocalStorage();
+      var remove_array = retrieved_items[quizId];
       for(var i = 0; i < remove_array.length; i++) {
         if(remove_array[i].id == id) {
           remove_array.splice(i, 1);
-          localStorage.setItem('array', JSON.stringify(remove_array));
+          console.log(retrieved_items);
+          setCompareToLocalStorage(retrieved_items);
         }
       }
       e.target.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
@@ -37,4 +40,15 @@ $(document).ready(function() {
     }
     e.stopPropagation();
   });
+
+  // functions for getting values from local storage and
+  // putting values back into localStorage
+  function getCompareFromLocalStorage() {
+    var compare_items = JSON.parse(localStorage.getItem('quiz'));
+    return compare_items;
+  }
+
+  function setCompareToLocalStorage(array) {
+    localStorage.setItem('quiz', JSON.stringify(array));
+  }
 });
