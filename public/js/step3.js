@@ -8,4 +8,8 @@ $(document).ready(function() {
    	  	getRoute( ev );
    	  };
    });
-})
+
+   $(".remove-trait").on("mousedown", function(ev){
+   		getRoute(ev);
+   });
+});

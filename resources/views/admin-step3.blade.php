@@ -90,7 +90,7 @@
             <div id="Trait-{{ $t -> id }}" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between">
                <span>{{ ucfirst($t -> trait) }}</span>
                <span>
-                  <a id="removeTrait-{{ $t -> id }}" href="" class="submit link blue ml1">x</a>
+                  <a id="removeTrait-{{ $t -> id }}" href="" class="remove-trait link blue ml1">x</a>
                </span>
             </div>
             @endforeach
