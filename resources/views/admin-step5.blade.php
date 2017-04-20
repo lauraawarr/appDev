@@ -6,6 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/public/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/public/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/public/manifest.json">
+        <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
+
         <title>Admin</title>
         <link rel="stylesheet" href="../css/tachyons.css">
        <link rel="stylesheet" href="../css/style.css">

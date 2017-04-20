@@ -6,6 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/public/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/public/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/public/manifest.json">
+        <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#4183f3">
+        <meta name="theme-color" content="#4183f3">
+
         <title>Review Your Answers</title>
         <link rel="stylesheet" href="../../css/tachyons.css">
         <link rel="stylesheet" href="../../css/style.css">
@@ -28,12 +36,12 @@
                    <h6 class="ml3 mb0 blue pointer">Edit answer</h6>
                 </div>
                 <div class="mv3">
-                   <input type="radio" name="q{{$i+1}}" value="5" class="mr2 pointer q{{$i+1}} <? if ($userArray[$i] != 5) echo 'dn'; ?>" id="q{{$i+1}}_1" 
+                   <input type="radio" name="q{{$i+1}}" value="5" class="mr2 pointer q{{$i+1}} <? if ($userArray[$i] != 5) echo 'dn'; ?>" id="q{{$i+1}}_1"
                    <? if ($userArray[$i] == 5) echo 'checked'; ?> />
                    <label for="q{{$i+1}}_1" class="pointer <? if ($userArray[$i] != 5) echo 'dn'; ?>">Very important</label>
                 </div>
                 <div class="mb3">
-                   <input type="radio" name="q{{$i+1}}" value="4" class="mr2 pointer q{{$i+1}} <? if ($userArray[$i] != 4) echo 'dn'; ?>" id="q{{$i+1}}_2" 
+                   <input type="radio" name="q{{$i+1}}" value="4" class="mr2 pointer q{{$i+1}} <? if ($userArray[$i] != 4) echo 'dn'; ?>" id="q{{$i+1}}_2"
                    <? if ($userArray[$i] == 4) echo 'checked'; ?> />
                    <label for="q{{$i+1}}_2" class="pointer <? if ($userArray[$i] != 4) echo 'dn'; ?>">Important</label>
                 </div>
