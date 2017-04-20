@@ -9,9 +9,6 @@ $('.removeQuiz').on('mousedown', function(ev){
 	removeQuizId = ev.target.id.replace('removeQuiz-', '');
 });
 
-/* Listen to click event on any submit button and handles case based on id */
-$('input[type=submit], .submit').on('mousedown', function(ev){ getRoute(ev)});
-
 function getRoute( ev ){
 	var hash = ev.target.id;
 	var trait = ($('#' + hash + '-Trait').val() || null );
@@ -37,13 +34,14 @@ function getRoute( ev ){
 	} else if (hash.includes("removeQuiz")){
 		sendData( hash, data); 
 		$( '#Quiz-' + removeQuizId).hide('slow');
+
 	} else if (hash.includes("removeProduct") || hash.includes("removeTrait")){
 		var tempArray = hash.split("-");
 		var url = tempArray[0];
 		var removeId = tempArray[1];
 		ajaxData = data;
 		ajaxData.removeId = removeId;
-		console.log( url );
+
 		sendData( '../' + url + '/' + quizId, ajaxData );
 		$( '#' + url.replace('remove', '') + '-' + removeId).hide('slow');
 
@@ -74,7 +72,7 @@ function previewFile( file ) {
 
 /* Preview added products as thumbnails */
 function previewProduct( name, des, imgSrc, prodId){
-	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><div class="h4"><img src="../uploads/'+imgSrc +'" class="max-h4 mt2"/></div><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><div class="h4"><img src="../uploads/'+imgSrc +'" class="max-h4 mt2"/></div><p class="f6">'+ name +'</p></div>');
 	$('#removeProduct-'+ prodId).on('mousedown', function(ev){ getRoute(ev) });
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);
@@ -83,7 +81,7 @@ function previewProduct( name, des, imgSrc, prodId){
 
 /* Preview added trait in list */
 function previewTrait( trait, traitId ){
-	$('#traits').prepend( '<div id="Trait-'+ traitId + '" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a href="" class="ttu f7 mr2 link blue">Edit</a><a id="removeTrait-'+ traitId +'" href="" class="submit link blue ml1">x</a></span></div>');
+	$('#traits').prepend( '<div id="Trait-'+ traitId + '" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a id="removeTrait-'+ traitId +'" href="" class="submit link blue ml1">x</a></span></div>');
 	$('#Trait-'+ traitId).on('mousedown', function(ev){ getRoute(ev)});
 	$('#submitTrait-Trait').val(null);
 };

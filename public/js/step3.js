@@ -4,5 +4,6 @@ $(document).ready(function() {
       if ($("input[name=trait-name]").val() == undefined || $("input[name=trait-name]").val() == "") {
          ev.preventDefault();
          $(".error-message").html("Please enter a trait name.");
+   	};
    });
 })

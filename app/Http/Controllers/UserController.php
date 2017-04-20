@@ -155,9 +155,8 @@ class UserController extends Controller
         $removeId = $request->removeId;
 
         $deletedRows = DB::table($quizId.'_inventory')->where('id', '=', $removeId )->delete();
-        $prodId = DB::getPdo()->lastInsertId();
 
-        return response()->json(['result'=> $deletedRows, 'prodId' => $prodId ]);
+        return response()->json(['result'=> $deletedRows ]);
     }
 
     public function removeQuiz(Request $request)
@@ -165,9 +164,10 @@ class UserController extends Controller
         $removeId = $request->removeQuizId;
 
         $deletedRows = DB::table('quizzes')->where('id', '=', $removeId )->delete();
-        $removeQuizId = DB::getPdo()->lastInsertId();
+        DB::table($removeId.'_inventory')->truncate();
+        DB::table($removeId.'_traits')->truncate();
 
-        return response()->json(['result'=> $deletedRows, 'removeQuizId' => $removeQuizId ]);
+        return response()->json(['result'=> $deletedRows, 'removeQuizId' => $removeId ]);
     }
 
     public function removeTrait(Request $request)
