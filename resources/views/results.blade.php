@@ -57,7 +57,7 @@
         </div>
         <div class="tl mt4">
           <span>
-            <a href="../../quiz.html" class="blue no-underline mr3 f4 b">Change Answers</a>
+            <a href="../../quiz-overview/{{ $quizId }}/{{ $userString }}" class="blue no-underline mr3 f4 b">Change Answers</a>
             <a href="../../quiz/{{ $quizId }}" class="blue no-underline ml3 mr3 f4 b"><img src="../../fonts/retake.svg" class="w1 pr1 mb0">Retake Quiz</a>
             <a href="../../comparison.html" class="blue no-underline mr3 ml3 f4 b">Compare Results</a>
           </span>

@@ -74,11 +74,11 @@
 
           <div id="traits" class="w-100 w-50-ns center">
             @foreach ( $traits as $t )
-            <div class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between">
+            <div id="Trait-{{ $t -> id }}" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between">
                <span>{{ ucfirst($t -> trait) }}</span>
                <span>
                   <a href="" class="ttu f7 mr2 link blue">Edit</a>
-                  <a href="" class="link blue ml1">x</a>
+                  <a id="removeTrait-{{ $t -> id }}" href="" class="submit link blue ml1">x</a>
                </span>
             </div>
             @endforeach

@@ -2,6 +2,12 @@ var imgName = null;
 var imgSrc = null;
 var imgFile = null;
 var ajaxData;
+var removeQuizId = 0;
+
+// Grabs index of quiz to remove ( if delete is confirmed, removeQuiz route is triggered with this id )
+$('.removeQuiz').on('mousedown', function(ev){
+	removeQuizId = ev.target.id.replace('removeQuiz-', '');
+});
 
 /* Listen to click event on any submit button and handles case based on id */
 $('input[type=submit], .submit').on('mousedown', function(ev){ getRoute(ev)});
@@ -17,12 +23,20 @@ function getRoute( ev ){
 		name: name,
 		description: description,
 		image: image,
-		quizId: quizId
+		quizId: quizId,
+		removeQuizId: removeQuizId
 	};
 
 	if (hash == "submitProduct"){
 		ajaxData = data;
 		sendData( '../uploadImage', new FormData($("#product-upload")[0]), false, false );
+
+	} else if (hash.includes("submitRanks")){
+		sendData( '../submitRanks/' + quizId, new FormData($('#ranking')[0]), false, false);
+
+	} else if (hash.includes("removeQuiz")){
+		sendData( hash, data); 
+		$( '#Quiz-' + removeQuizId).hide('slow');
 	} else if (hash.includes("removeProduct") || hash.includes("removeTrait")){
 		var tempArray = hash.split("-");
 		var url = tempArray[0];
@@ -35,11 +49,10 @@ function getRoute( ev ){
 
 	} else if (hash == "newQuiz"){
 		sendData( '../' + hash, data);
+
 	} else {
 		sendData( '../' + hash + '/' + quizId, data);
 	};
-
-	if ( trait ) previewTrait( trait );
 };
 
 /* Upload an image */
@@ -61,7 +74,7 @@ function previewFile( file ) {
 
 /* Preview added products as thumbnails */
 function previewProduct( name, des, imgSrc, prodId){
-	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><img src="../uploads/'+ imgSrc +'" width="333" class="w-90 mt2"/><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
+	$('#products').prepend( '<div id="Product-'+ prodId +'" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1"><div id="removeProduct-'+ prodId +'" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div><div class="h4"><img src="../uploads/'+imgSrc +'" class="max-h4 mt2"/></div><p class="f6">'+ name +'</p><a href="" class="db br1 bg-blue w-100 pv2 tc link white f6">Edit</a></div>');
 	$('#removeProduct-'+ prodId).on('mousedown', function(ev){ getRoute(ev) });
 	$('#submitProduct-Name').val(null);
 	$('#submitProduct-Description').val(null);
@@ -69,8 +82,9 @@ function previewProduct( name, des, imgSrc, prodId){
 };
 
 /* Preview added trait in list */
-function previewTrait( trait ){
-	$('#traits').prepend( '<div class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a href="" class="ttu f7 mr2 link blue">Edit</a><a href="" class="link blue ml1">x</a></span></div>');
+function previewTrait( trait, traitId ){
+	$('#traits').prepend( '<div id="Trait-'+ traitId + '" class="bb bw1 b--light-gray ph2 pt3 pb2 flex justify-between"><span>'+ trait + '</span><span><a href="" class="ttu f7 mr2 link blue">Edit</a><a id="removeTrait-'+ traitId +'" href="" class="submit link blue ml1">x</a></span></div>');
+	$('#Trait-'+ traitId).on('mousedown', function(ev){ getRoute(ev)});
 	$('#submitTrait-Trait').val(null);
 };
 
@@ -99,6 +113,9 @@ function sendData( url, data, process, type ){
 			if (url.includes("submitProduct")){
 				previewProduct( data.name, data.description, data.img, data.prodId );
 			};
+			if (url.includes("submitTrait")){
+				previewTrait( data.trait, data.traitId );
+			};;
 			if (url.includes("uploadImage")){
 				ajaxData.image = data.imgName;
 				sendData( '../submitProduct', ajaxData);

@@ -31,15 +31,29 @@
 
         @else
             @foreach ( $quizzes as $q )
-            <div class="bg-white mt5 pv5 ph5">
+            <div id="Quiz-{{ $q -> id }}" class="bg-white mt5 pv5 ph5">
              <h3 class="mv0">{{ $q -> name }}</h3>
              <p>{{ $q -> description }}</p>
-             <div class="mt5 mb2">
+             <div class="mt5">
+                <span id="removeQuiz-{{ $q -> id }}" class="removeQuiz dim bg-moon-gray br1 pv3 ph5 f6 link white pointer delete">Delete</span>
                 <a href="admin-step1/{{ $q -> id }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Edit</a>
                 <a href="quiz/{{ $q -> id }}" class="dim bg-blue br1 pv3 ph5 f6 link white">Preview</a>
              </div>
             </div>
            @endforeach
         @endif
+         <div class="absolute absolute-center bg-white ba b--light-gray ph4 pt4 pb5 z-5 br1 dn" id="confirm-delete-box">
+            <h3 class="mb5">Are you sure you want to delete this quiz?</h3>
+            <span class="pointer dim bg-moon-gray br1 pv3 ph5 f6 link white" id="cancel-button">Cancel</span>
+            <span id="removeQuiz" class="submit pointer dim bg-blue br1 pv3 ph5 f6 link white" id="delete-button">Delete</span>
+         </div>
+         <div class="w-100 vh-100 bg-black-70 absolute absolute--fill dn" id="confirm-overlay">
+         </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      var quizId = "@if ( isset($quiz[0] -> id) ){{ $quiz[0] -> id }} @endif";
+    </script>
+    <script src="./js/home.js"></script>
+    <script type="text/javascript" src="./js/admin.js"></script>
 </html>

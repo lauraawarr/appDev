@@ -31,6 +31,10 @@ Route::get('/admin-step4/{quizId}', 'UserController@getStep4');
 
 Route::get('/admin-step5/{quizId}', 'UserController@getStep5');
 
+Route::get('/compare/{quizId}', function ( $quizId ) {
+    return view('compare', ['quizId' => $quizId]);
+});
+
 Route::post('/newQuiz', 'UserController@newQuiz');
 
 Route::get('/questions', function () {
@@ -39,11 +43,19 @@ Route::get('/questions', function () {
 
 Route::get('/quiz/{quizId}', 'UserController@getQuiz');
 
+Route::get('/quiz-overview/{quizId}/{userArray}', 'UserController@getOverview');
+
 Route::get('/results/{quizId}/{userArray}', 'UserController@getResult');
+
+Route::post('/removeQuiz', 'UserController@removeQuiz');
 
 Route::post('/removeProduct/{quizId}', 'UserController@removeProduct');
 
+Route::post('/removeTrait/{quizId}', 'UserController@removeTrait');
+
 Route::post('/submitProduct', 'UserController@SubmitProduct');
+
+Route::post('/submitRanks/{quizId}', 'UserController@SubmitRanks');
 
 Route::post('/submitTrait/{quizId}', 'UserController@SubmitTrait');
 

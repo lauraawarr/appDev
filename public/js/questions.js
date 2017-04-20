@@ -2,6 +2,7 @@ $(document).ready(function() {
 
    // object to keep track of user's answers
    var answers = {"q1": "", "q2": "", "q3": "", "q4": ""};
+   var answerString = "";
 
    // delay times to be used later
    var outTime = 500;
@@ -27,6 +28,7 @@ $(document).ready(function() {
          // update answers object
          var q = $("input[name=q" + questionNum + "]:checked").val();
          answers["q" + questionNum] = q;
+         answerString += q;
          console.log(q);
          console.log(answers);
 
@@ -49,6 +51,11 @@ $(document).ready(function() {
       });
    }
 
+   $("#submit-answers").on('mousedown', function(ev){
+      ev.preventDefault();
+      window.location.href = "../results/" + quizId + "/" + answerString;
+      // console.log( "../result/" + quizId + "/" + answerString );
+   });
    // function updateAnswer(questionNum) {
    //    $(".q" + questionNum).on("click", function() {
    //

@@ -92,7 +92,9 @@
             @foreach ( $products as $p )
               <div id="Product-{{ $p -> id }}" class="w-100 w-46-m w-30-l pa4 bw1 b--solid b--light-gray tc relative product mb3 mh1">
                 <div id="removeProduct-{{ $p -> id }}" class="submit link blue absolute top-1p right-1 delete-product pointer">x</div>
-                <img src="../uploads/{{ $p -> img }}" width="333" class="w-90 mt2"/>
+                <div class="h4">
+                  <img src="../uploads/{{ $p -> img }}" class="max-h4 mt2"/>
+                </div>
                 <p class="f6">
                    {{ $p -> name }}
                 </p>
