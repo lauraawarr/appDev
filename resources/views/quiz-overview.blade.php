@@ -17,8 +17,6 @@
         <title>Review Your Answers</title>
         <link rel="stylesheet" href="../../css/tachyons.css">
         <link rel="stylesheet" href="../../css/style.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="../../js/questions-overview.js"></script>
     </head>
     <body class="avenir-next pa4 bg-washed-blue fw3 f5">
        <nav class="pb4 bb bw1 b--lightest-blue flex justify-start relative">
@@ -67,8 +65,11 @@
           </form>
        </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
       var quizId = <? echo $quizId ?>;
       var userArray = <? echo json_encode($userArray) ?>;
+      var totalQuestions = <? echo count( $traits ) ?>;
     </script>
+    <script src="../../js/questions-overview.js"></script>
 </html>

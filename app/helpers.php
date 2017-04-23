@@ -1,6 +1,8 @@
 <?php
 
-	/* Returns the dot product of two arrays where the user's array is raised to the power of 2*/
+	/* Returns the dot product of two arrays where the user's array is raised to the power of 2
+	Products score is shifted to a scale of [-2, 2] where 0 is neutral */
+
 	function calcScore( $x, $y )
 	{
 		// Loops over elements in question array (y)
@@ -16,7 +18,7 @@
 				$x[$i] = 1;
 			};
 
-			$total = $total + (pow( 2 , $x[$i])*$y[$i]);
+			$total = $total + (pow( 2 , $x[$i])*($y[$i] - 3));
 		};
 		return $total;
 	}

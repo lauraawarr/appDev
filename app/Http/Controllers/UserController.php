@@ -95,32 +95,33 @@ class UserController extends Controller
     {
         $userString = $userArray;
     	$userArray = array_map('intval', str_split( $userArray , 1 ));
-    	$topProdScores = [0,0,0,0];
+    	$topProdScores = [-10000,-10000,-10000,-10000];
     	$topProds = [null, null, null, null];
     	$lastIndex = count( $topProds ) - 1;
     	$temp = $userArray;
 
-        $products = DB::table($quizId.'_inventory')->orderBy('id')->get();//chunk(100, function($products) use ( &$temp, $userArray, &$topProdScores, &$topProds, $lastIndex ){
+        $products = DB::table($quizId.'_inventory')->orderBy('id')->get();
 
-        	foreach ($products as $product) {
-        		$prodArray = array_map('intval', explode( ',', $product->rankings ));
-        		$prodScore = calcScore( $userArray, $prodArray);
-                array_push( $temp, $product);
+    	foreach ($products as $product) {
+    		$prodArray = array_map('intval', explode( ',', $product->rankings ));
+    		$prodScore = calcScore( $userArray, $prodArray);
+            array_push( $temp, $product);
 
-        		$largestIndex = null;
-        		for ($i = $lastIndex; $i > -1; $i--){
-        			if ( $prodScore > $topProdScores[ $i ]){
-        				$largestIndex = $i;
-        			} else {
-        				break;
-        			};
-        		};
-        		if (!is_null($largestIndex)){
-        			$topProds = insertAt( $topProds, $largestIndex, $product );
-        			$topProdScores = insertAt( $topProdScores, $largestIndex, $prodScore );
+    		$largestIndex = null;
+    		for ($i = $lastIndex; $i > -1; $i--){
+    			if ( $prodScore > $topProdScores[ $i ]){
+    				$largestIndex = $i;
+                } else if ( $prodScore == $topProdScores[ $i ]){
+                    $largestIndex = $i + round(rand(0,1)); // if equal, randomly choose order
+    			} else {
+    				break;
     			};
-        	};
-        // });
+    		};
+    		if (!is_null($largestIndex)){
+    			$topProds = insertAt( $topProds, $largestIndex, $product );
+    			$topProdScores = insertAt( $topProdScores, $largestIndex, $prodScore );
+			};
+    	};
   
     	return view('results', ['result' => $topProds, 'quizId' => $quizId, 'userString' => $userString ]); 
     }

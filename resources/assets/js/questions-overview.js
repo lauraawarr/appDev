@@ -18,8 +18,6 @@ $(window).on("load", function() {
       });
    };
 
-   // this number needs to be set
-   var totalQuestions = 4;
 
    for (i=1; i<totalQuestions+1; i++) {
       openAnswers(i);
