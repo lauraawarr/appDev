@@ -1,1 +1,0 @@
-$(document).ready(function(){$(".cta-button").on("mousedown",function(n){getRoute(n)})});
